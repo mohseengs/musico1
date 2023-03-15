@@ -2,7 +2,7 @@ class User < ApplicationRecord
     has_secure_password
     EMAIL_REGEX = /\A[^@\s]+@[^@\s]+\z/
     validates :email, presence: true, uniqueness: true, format: { with: EMAIL_REGEX, message: 'Invalid email' }
-    validates :name, :password, :dob, presence: :true
+    validates :name, :dob, presence: :true
 
     #follow
     has_many :follower_follows, foreign_key: :following_id, class_name: "Follow" , dependent: :destroy
@@ -29,5 +29,7 @@ class User < ApplicationRecord
     #notification
     has_many :notifications , dependent: :destroy
 
+    #scopes
+    scope :search, -> (query, current_user_id){ where("name LIKE ?" , "%" + query + "%").where( "id <> ?", current_user_id )} 
 end
 

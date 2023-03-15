@@ -1,0 +1,18 @@
+<h1>New Song</h1>
+    <%= render 'song_upload_form', song: @song %>
+
+<script>
+
+    $(document).ready(function() {
+        $('#song_search_query').on('change', function() {
+            var query = $(this).val();
+          
+            $.ajax({
+                url: '/search_user/' + query + '.js',
+                type: 'GET'
+            });
+
+        });
+    });
+
+</script>

@@ -1,0 +1,19 @@
+<% @users.each do |user| %>
+    <div class="checkbox_div">
+        <%= check_box_tag 'song[user_ids][]' , user.id, false, label: user.name, class: :search_user_checkbox %>
+        <%= label_tag user.name , user.name %>
+    </div>
+<% end %>
+<script>
+  $('.search_user_checkbox').on('change',
+        function(){
+            if (this.checked) 
+            {
+                $('#selected_users').append($(this).parent());
+            }
+            else
+            {
+                $(this).parent().remove();
+            }
+    });
+</script>
