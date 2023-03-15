@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-    before_action :check_login, except: [:login, :new, :validate]
+    before_action :check_login, except: [:login, :new, :validate , :create]
     
     private
     def check_login
