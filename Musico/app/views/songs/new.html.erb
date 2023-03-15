@@ -1,0 +1,30 @@
+<h1>New Song</h1>
+    <%= render 'shared/song_upload_form', song: @song %>
+
+<script>
+
+    $(document).ready(function() {
+        $('#song_search_query').on('change', function() {
+            var query = $(this).val();
+          
+            $.ajax({
+                    url: '/search_user/' + query,
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function(data) {
+                        var checkbox = $('#song_search_query').html();
+                        $.each(data, function(index, value) {
+                            checkbox += "<input type='checkbox'  name='song[users][]' value='"+ value.id +"'>"
+                            checkbox += "<label for=" + value.id + " >" + value.name + "</lable>"
+                        });
+                        $('#users').append(checkbox);
+                    },
+                    error: function(xhr, textStatus, errorThrown) {
+                        console.log('Error fetching options: ' + errorThrown);
+                    }
+            });
+
+        });
+    });
+
+</script>

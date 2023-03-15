@@ -18,6 +18,16 @@
     display: none;
 }*/
 
+:root {
+    --accent : #ee8b8c;
+    --accent-light : #edd9da;
+    --accent-extra-light : #f7f1f1;
+    --white: #ffffff;
+    --pale-white : #e4e4e4;
+    --text-black : #000000;
+    --text-light-black : #1e1a1a;
+  }
+
 .auth-form-card{
     padding-left: 150px;
     padding-right: 150px;
@@ -80,4 +90,69 @@
 .link:hover{
     color: black;
     background-color: white;
+}
+
+
+/* Sidebar */
+.sidebar {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    padding: 0 0 0; /* Height of navbar */
+    width: 240px;
+    z-index: 600;
+    border: none;
+    box-shadow: 0px 0.2px 50px 10px var(--accent-extra-light);
+    }
+    
+    @media (max-width: 991.98px) {
+    .sidebar {
+    width: 100%;
+    }
+    }
+    .sidebar .active {
+    border-radius: 50px;
+    background-color: var(--accent-extra-light);
+    border: none;
+    color: #ee8b8c;
+
+    }
+    
+    .sidebar-sticky {
+    position: relative;
+    top: 0;
+    height: calc(100vh - 48px);
+    padding-top: 0.5rem;
+    overflow-x: hidden;
+    overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+    }
+.sidebar .list-group-item{
+
+    border: none;
+}
+.sidebar .list-group-item.active{
+    color: var(--accent);
+}
+
+.appname {
+    margin-top: 15px;
+    margin-bottom: 50px;
+    text-align: center;
+}
+.navbar .search{
+    width: 100%;
+}
+.navbar-nav{
+    width: 100%;
+}
+.navbar .search-box{
+
+    border-radius: 50px;
+    border: none;
+    background-color: var(--pale-white);
+    color: var(--accent);
+    margin-right: 100px!;
+    margin-left: 100px;
+
 }

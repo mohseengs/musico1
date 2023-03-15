@@ -3,4 +3,7 @@ class User < ApplicationRecord
     EMAIL_REGEX = /\A[^@\s]+@[^@\s]+\z/
     validates :email, presence: true, uniqueness: true, format: { with: EMAIL_REGEX, message: 'Invalid email' }
     validates :name, :password, :dob, presence: :true
+    has_and_belongs_to_many :songs
+ 
 end
+
