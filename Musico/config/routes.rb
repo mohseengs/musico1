@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :songs
   root 'dashboard#index'
   get '/login' => 'authentication#login'
   get '/logout' => 'authentication#logout'
