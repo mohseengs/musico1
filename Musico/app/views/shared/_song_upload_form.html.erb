@@ -16,15 +16,10 @@
     <%= form.text_field :name %>
   </div>
 
-  <div class="field">
-    <%= form.label :language_id %>
-    <%= form.text_field :language_id %>
-  </div>
 
-  <div class="field">
-    <%= form.label :genres_id %>
-    <%= form.text_field :genres_id %>
-  </div>
+
+  <%= form.select :category_id , options_for_select(@categories.map{|category| [category.name, category.id]})%>
+  <%= form.select :language_id , options_for_select(@languages.map{|language| [language.name, language.id]})%>
 
   <div class="actions">
     <%= form.submit %>

@@ -6,13 +6,13 @@
 </p>
 
 <p>
-  <strong>Language:</strong>
-  <%= @song.language_id %>
+  <strong>Genres:</strong>
+  <%= @song.category.name %>
 </p>
 
 <p>
-  <strong>Genres:</strong>
-  <%= @song.genres_id %>
+  <strong>Language:</strong>
+  <%= @song.language.name %>
 </p>
 
 <%= link_to 'Edit', edit_song_path(@song) %> |

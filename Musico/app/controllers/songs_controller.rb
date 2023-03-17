@@ -13,6 +13,8 @@ class SongsController < ApplicationController
   # GET /songs/new
   def new
     @song = Song.new
+    @categories = Category.all
+    @languages = Language.all
   end
 
   # GET /songs/1/edit
@@ -20,9 +22,24 @@ class SongsController < ApplicationController
   end
 
   # POST /songs or /songs.json
+  #def create
+  #  @song = Song.new(song_params)
+  #  @categories = Category.all
+  #  @languages = Language.all
+  #  respond_to do |format|
+  #    if @song.save
+  #      format.html { redirect_to song_url(@song), notice: "Song was successfully created." }
+  #      format.json { render :show, status: :created, location: @song }
+  #    else
+  #      format.html { render :new, status: :unprocessable_entity }
+  #      format.json { render json: @song.errors, status: :unprocessable_entity }
+  #    end
+  #  end
+  #end
+
   def create
     @song = Song.new(song_params)
-
+   
     respond_to do |format|
       if @song.save
         format.html { redirect_to song_url(@song), notice: "Song was successfully created." }
@@ -65,6 +82,6 @@ class SongsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def song_params
-      params.require(:song).permit(:name, :language_id, :genres_id)
+      params.require(:song).permit(:name, :category_id, :language_id)
     end
 end
