@@ -15,6 +15,7 @@ class SongsController < ApplicationController
     @song = Song.new
     @categories = Category.all
     @languages = Language.all
+    puts search([{:model => User, :column => ["name"]}], "sumit")
   end
 
   # GET /songs/1/edit
