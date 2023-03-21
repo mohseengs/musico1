@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
-    before_action :check_login, except: [:login, :new, :validate , :create]
+    before_action :check_login
     
-    private
+    protected
     def check_login
         if(session[:user_id] == nil)
             redirect_to login_path
