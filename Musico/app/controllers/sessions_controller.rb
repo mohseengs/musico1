@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-  skip_before_action :check_login
+  skip_before_action :check_login , only: [:new, :create]
 
   def new
      
@@ -9,8 +9,9 @@ class SessionsController < ApplicationController
     email = params[:email]
     password = params[:password] 
     @user = User.find_by_email(email)
-    if(@user && @user.password == password)
+    if(@user && @user.authenticate(password))
         session[:user_id] = @user.id
+        current_user
         redirect_to root_path
     else 
         redirect_to login_path, notice: "wrong email or password"

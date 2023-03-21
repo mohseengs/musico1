@@ -1,5 +1,5 @@
 <h3 class="mb-4">Signup</h3>
-    <%= form_with url: registrations_path , model: user do |form| %>
+    <%= form_with url: signup_path , model: user do |form| %>
     <div>
         <%= form.label :name ,class: "form-lable"%>
         <%= form.text_field :name , class: "form-control"%>
@@ -17,9 +17,13 @@
 
     <div>
         <%= form.label :password ,class: "form-lable"%>
-        <%= form.text_field :password , class: "form-control" %>
+        <%= form.password_field :password , class: "form-control" %>
     </div>
 
+    <div>
+        <%= form.label :password_confirmation ,class: "form-lable"%>
+        <%= form.password_field :password_confirmation, class: "form-control" %>
+    </div>
     <div class="actions">
         <%= form.submit "signup", class: "btn" %>
     </div>

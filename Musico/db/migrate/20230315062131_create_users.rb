@@ -3,8 +3,7 @@ class CreateUsers < ActiveRecord::Migration[6.1]
     create_table :users do |t|
       t.string :name
       t.string :email
-      t.string :password
-      t.boolean :is_artist
+      t.string :password_digest
       t.date :dob
 
       t.timestamps
