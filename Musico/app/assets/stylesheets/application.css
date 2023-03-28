@@ -13,3 +13,71 @@
  *= require_tree .
  *= require_self
  */
+/* 
+.field_with_errors{
+    display: none;
+}*/
+
+.auth-form-card{
+    padding-left: 150px;
+    padding-right: 150px;
+    background-color: white;
+    margin-top:10%;
+  
+}
+
+.auth-form-card-img{
+    background: url("bg.jpg");
+    background-size: auto 100%;
+
+    background-repeat: no-repeat;
+    height: 100vh;
+
+    filter: grayscale(100%);
+}
+
+.auth-form-text-on-img{
+    position: absolute;
+    bottom: 0;
+    margin-bottom: 100px;
+    margin-left: 50px;
+}
+.auth-form-text-on-img p{
+    color: white;
+    font-size: 20px;
+}
+.auth-form-text-on-img h1{
+    color: white;
+   font-size: 100px;
+}
+
+
+.btn{
+    border-radius: 0.5rem;   
+    width: 100%;
+    border: none;
+    color: rgb(114, 112, 88);
+    background-color: rgb(212, 208, 161);
+    margin-top: 10px;
+    outline: none;
+}
+
+.btn:hover{
+    background-color: black;
+    color: white;
+    outline: none;
+
+}
+
+.btn:focus {
+    outline: white;
+}
+
+.link{
+    color: rgb(117, 114, 88);
+    text-decoration: none;
+}
+.link:hover{
+    color: black;
+    background-color: white;
+}

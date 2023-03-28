@@ -5,12 +5,30 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'%>
+    
   </head>
 
   <body>
-    <%= yield %>
+
+     <% if controller_name == "registrations" || controller_name == "sessions"  %>
+      <div class="container-fluid auth-bg" > 
+        <div class="row">
+            <div class="col-6 auth-form-card">
+                <%= yield %>
+            </div>
+            <div class="col-6 auth-form-card-img">
+            
+                <div class="row auth-form-text-on-img">
+                    <h1>Musico</h1>
+                    <p>music that suits your taste</p>
+                </div>
+            </div>
+        </div>
+      </div>
+      <% else %>
+          <%= yield %>
+    <% end %>
   </body>
 </html>
