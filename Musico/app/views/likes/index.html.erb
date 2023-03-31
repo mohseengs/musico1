@@ -1,0 +1,25 @@
+<h1>your likes</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>song</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @likes.each do |like| %>
+      <tr>
+        <td><%= like.likeable_type %></td>
+        <% if like.song? %>
+            <td><%= link_to songs_path(like.likeable_id) %></td>
+        <% elsif like.playlist? %>
+            <td><%= link_to playlists_playlist_songs_path(like.likeable_id) %></td>
+        <% end %>
+        <td><%= link_to 'Show', song %></td>
+        <td><%= link_to 'Destroy', playlist_playlist_song_path(:id => song.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
