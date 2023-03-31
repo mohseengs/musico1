@@ -1,0 +1,19 @@
+<% @songs.each do |song| %>
+    <div class="checkbox_div">
+        <%= check_box_tag 'songs[]' , song.id, false, class: :search_song_checkbox %>
+        <%= label_tag song.name , song.name %>
+    </div>
+<% end %>
+<script>
+  $('.search_song_checkbox').on('change',
+    function(){
+        if (this.checked) 
+        {
+            $('#selected_songs').append($(this).parent());
+        }
+        else
+        {
+            $(this).parent().remove();
+        }
+    });
+</script>

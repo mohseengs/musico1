@@ -1,0 +1,34 @@
+<%= form_with url: playlist_playlist_songs_path, method: :post do |form| %>
+ 
+ <div class="field">
+    <%= form.label :serach_user %>
+    <%= form.text_field :search_query, id: 'playlist_song_search_query' %>
+  </div>
+
+  <div id="songs">
+  </div>
+
+  <h3>selected songs</h3>
+  <div id="selected_songs">
+  </div>
+
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+
+<script>
+
+    $(document).ready(function() {
+        $('#playlist_song_search_query').on('change', function() {
+            var query = $(this).val();
+            $.ajax({
+                url: '/search_song/' + query + '.js',
+                type: 'GET'
+            });
+
+        });
+    });
+
+</script>
