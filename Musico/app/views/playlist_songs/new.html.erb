@@ -1,0 +1,41 @@
+<%= form_with url: playlist_playlist_songs_path, method: :post do |form| %>
+  <div class="field">
+    <%= form.text_field :search_query %>
+    <%= form.label :search_user %>
+  </div>
+
+  <div id="songs">
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+
+<script>
+
+    $(document).ready(function() {
+        $('#search_query').on('change', function() {
+            var query = $(this).val();
+            alert("mohseen")
+            $.ajax({
+                    url: '/search_song/' + query,
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function(data) {
+                        var checkbox = $('#songs').html();
+                        $.each(data, function(index, value) {
+                            checkbox += "<input type='checkbox'  name='songs[]' value='"+ value.id +"'>"
+                            checkbox += "<label for=" + value.id + " >" + value.name + "</lable>"
+                        });
+                        $('#songs').append(checkbox);
+                    },
+                    error: function(xhr, textStatus, errorThrown) {
+                        console.log('Error fetching options: ' + errorThrown);
+                    }
+            });
+
+        });
+    });
+
+</script>
