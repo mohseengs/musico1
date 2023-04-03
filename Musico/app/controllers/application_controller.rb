@@ -11,4 +11,13 @@ class ApplicationController < ActionController::Base
         @current_user ||= User.find_by_id(session[:user_id])
     end
     helper_method :current_user
+
+    def current_song
+        @current_song = current_user.song_queue.songs[current_user.song_queue.current_pointter]
+    end
+    helper_method :current_song
+
+    def current_song_pointer 
+        @current_song_pointer = current_user.song_queue.current_pointter
+    end
 end

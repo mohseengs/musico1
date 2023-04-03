@@ -19,7 +19,10 @@
         <td><%= song.language_id %></td>
         <td><%= song.category_id %></td>
         <td><%= link_to 'Show', song %></td>
+        <td><%= link_to 'like', likes_path(song_id: song.id) %></td>
         <td><%= link_to 'Edit', edit_song_path(song) %></td>
+        <td class='like_button'><%= render "likes/like_button" , likeable:song %><td>
+        <td><%= link_to 'add to queue', song_queue_path(song.id), method: :patch%></td>
         <td><%= link_to 'Destroy', song, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>

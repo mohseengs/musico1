@@ -1,157 +1,195 @@
-/*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
- * vendor/assets/stylesheets directory can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
- * files in this directory. Styles in this file should be added after the last require_* statement.
- * It is generally better to create a new file per style scope.
- *
- *= require_tree .
- *= require_self
- */
-/* 
-.field_with_errors{
-    display: none;
-}*/
-
-:root {
-    --accent : #ee8b8c;
-    --accent-light : #edd9da;
-    --accent-extra-light : #f7f1f1;
-    --white: #ffffff;
-    --pale-white : #e4e4e4;
-    --text-black : #000000;
-    --text-light-black : #1e1a1a;
-  }
-
-.auth-form-card{
-    padding-left: 150px;
-    padding-right: 150px;
-    background-color: white;
-    margin-top:10%;
-  
+:root{
+    --white: #E7EBF0;
+    --pale-white: #D3DAE4;
+    --purple-white: #DFDDED;
+    --bright-white: #ffffff;
+    --text-color: #2c2c2c;
+    --light-text-color: #555555;
+    --accent: #C7B1F0;
 }
-
-.auth-form-card-img{
-    background: url("bg.jpg");
-    background-size: auto 100%;
-
-    background-repeat: no-repeat;
+body{
+    font-family: 'Poppins';
+    background: linear-gradient(180deg, var(--purple-white),var(--white));
     height: 100vh;
-
-    filter: grayscale(100%);
+    width: 100vw;
+    overflow: hidden;
+}
+h1, h2, h3, h4, h5, h6{
+    font-weight: bold;
+}
+.sidebar{
+    padding-left: 30px;
+}
+.semi-heading{
+    font-size: medium;
+}
+.brand-name{
+    display: block;
+    color: var(--text-color);
+    font-size: larger;
+    font-weight: bold;
+    text-decoration-style: none;
+    margin-top: 50px;
+    margin-bottom: 50px;
 }
 
-.auth-form-text-on-img{
-    position: absolute;
-    bottom: 0;
-    margin-bottom: 100px;
-    margin-left: 50px;
+.sidebar-group{
+    margin-top: 40px;
+    margin-bottom: 40px;
 }
-.auth-form-text-on-img p{
-    color: white;
-    font-size: 20px;
-}
-.auth-form-text-on-img h1{
-    color: white;
-   font-size: 100px;
-}
-
-
-.btn{
-    border-radius: 0.5rem;   
-    width: 100%;
-    border: none;
-    color: rgb(114, 112, 88);
-    background-color: rgb(212, 208, 161);
-    margin-top: 10px;
-    outline: none;
-}
-
-.btn:hover{
-    background-color: black;
-    color: white;
-    outline: none;
+.sidebar-group-name{
+    display: block;
+    margin-left: 10px;
+    font-size: 0.7em;
+    font-weight: bolder;
+    color: var(--light-text-color);
+    letter-spacing: 0.5px;
 
 }
-
-.btn:focus {
-    outline: white;
+.sidebar-items{
+    list-style: none;
+    padding-left: 0px;
 }
-
-.link{
-    color: rgb(117, 114, 88);
+.sidebar-item{
+    padding: 10px;
+    border-radius: 1em;
+}
+.active{
+    background-color: var(--bright-white);
+}
+.sidebar-link{
+    text-decoration: none;
+    font-size: 0.9em;
+    font-weight: bolder;
+    color: var(--text-color);
+}
+.sidebar-icon{
+    width: 16px;
+    height: 16px;
+    margin-right: 10px;
+}
+.sidebar-icon:hover{
     text-decoration: none;
 }
-.link:hover{
-    color: black;
-    background-color: white;
-}
-
-/* Sidebar */
-.sidebar {
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    padding: 0 0 0; /* Height of navbar */
-    width: 240px;
-    z-index: 600;
+.input-group-text{
+    background-color: var(--bright-white);
     border: none;
-    box-shadow: 0px 0.2px 50px 10px var(--accent-extra-light);
-    }
-    
-    @media (max-width: 991.98px) {
-    .sidebar {
+    border-radius: 0.7em;
+}
+.search-box{
+    border: none;
+    border-radius: 0.7em;
+}
+.main{
+    background-color: var(--white);
+    margin: 20px 0px 20px 0px;
+    border-radius: 1em;
+}
+.dp{
+    width: 25px;
+    height: 25px;
+}
+.nav-username{
+    font-size: small;
+    color: var(--text-color);
+    font-weight: bolder;
+}
+.released-thumbnail img{
     width: 100%;
-    }
-    }
-    .sidebar .active {
-    border-radius: 50px;
-    background-color: var(--accent-extra-light);
+    height: 100%;
+    border-radius: 1em;
+}
+.released-songs{
+    height: 250px;
+    padding-left: 25px;
+}
+.released-artists-name, .recent-song-artist-name{
+    font-size: small;
+    color: var(--light-text-color);
+    justify-self: center;
+}
+.released-song-name , .recent-song-name{
+    font-size: 0.8em;
+    font-weight: bold;
+    justify-self: center;
+}
+.time{
+    color: var(--light-text-color);
+    font-size: x-small;
+}
+.recently-played{
+    margin-top: 10px;
+    height: 200px;
+    border-radius: 1em;
+}
+.recently-played img{
+    height: 100%;
+    width: 100%;
+    border-radius: 1em;
+    padding: 0px;
+}
+.recently-played:hover{
+    background:  linear-gradient(180deg, var(--purple-white),var(--white));
+}
+.recenty-palyed-sidebar{
+    height: 50px;
+    padding: 5px;
+    background-color: var(--bright-white);
+    border-radius: 1em
+}
+.recenty-palyed-sidebar img{
+    height: 100%;
+    width: 100%;
+    border-radius: 0.5em;
+}
+.btn{
+    border-radius: 0.7em;
+}
+.btn-primary{
+    background-color: var(--accent);
     border: none;
-    color: #ee8b8c;
-
-    }
     
-    .sidebar-sticky {
-    position: relative;
-    top: 0;
-    height: calc(100vh - 48px);
-    padding-top: 0.5rem;
-    overflow-x: hidden;
-    overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
-    }
-.sidebar .list-group-item{
-
-    border: none;
 }
-.sidebar .list-group-item.active{
-    color: var(--accent);
+.music-bar{
+    height: 65px;
+    background-color: var(--bright-white);
+    padding: 0px 25px 0px 25px;
+    margin-left: 25px;
+    margin-right: 25px;
+    border-radius: 1em;
+    overflow:hidden;
+}
+.progress{
+    height: 5px;
+    width: 100%;
+    background-color: var(--bright-white);
+}
+.progress-bar{
+   background-color: var(--accent);
+}
+.content{
+    overflow-x: auto ;
+}
+.content::-webkit-scrollbar {
+    overflow-x: auto ;
+}
+.form-control{
+
+    border-radius: 1em;
+    background-color: var(--bright-white);
+
 }
 
-.appname {
-    margin-top: 15px;
-    margin-bottom: 50px;
+/*music player*/
+.music-controll-icon{
     text-align: center;
 }
-.navbar .search{
-    width: 100%;
+.music-controll-icon img{
+    height: 25px;
+    width: 25px;
 }
-.navbar-nav{
-    width: 100%;
-}
-.navbar .search-box{
 
-    border-radius: 50px;
-    border: none;
-    background-color: var(--pale-white);
-    color: var(--accent);
-    margin-right: 100px!;
-    margin-left: 100px;
-
+.music-controll-icon #play-button{
+    height: 30px;
+    width: 30px;
 }

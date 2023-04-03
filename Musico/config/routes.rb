@@ -9,10 +9,14 @@ Rails.application.routes.draw do
   get 'search_user/:query' => 'songs#search_user', as: :search_user
   get 'search_song/:query' => 'playlist_songs#search_song', as: :search_song
 
-  resources :users
-  resources :songs
+  resources :users 
+  resources :songs 
   resources :playlists do
     resources :playlist_songs , only: [:index , :new , :create , :destroy]
   end
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  resources :likes, only: [:index, :create]
+  delete '/likes' => 'likes#destroy' , as: :unlike
+  resources :song_queue , only: [:index , :update , :destroy]
+  post 'change_song/:song_pointer' => 'song_queue#change_song' , as: :change_song
+ 
 end

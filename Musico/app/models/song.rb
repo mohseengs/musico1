@@ -1,4 +1,6 @@
 class Song < ApplicationRecord
+  has_one_attached :thumbnail
+  has_one_attached :audio
   has_and_belongs_to_many :users , dependent: :destroy
   has_and_belongs_to_many :song_queues , dependent: :destroy
   has_and_belongs_to_many :playlists , dependent: :destroy

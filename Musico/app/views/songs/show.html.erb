@@ -22,6 +22,6 @@
   <% end %>
 </p>
 
-
+<td class='like_button'><%= render "likes/like_button" , likeable:@song %><td>
 <%= link_to 'Edit', edit_song_path(@song) %> |
 <%= link_to 'Back', songs_path %>

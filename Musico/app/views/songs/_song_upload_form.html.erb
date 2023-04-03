@@ -4,6 +4,16 @@
     <%= form.text_field :name %>
   </div>
 
+  <div class="field">
+    <%= form.label :song %>
+    <%= form.file_field :audio %>
+  </div>
+
+  <div class="field">
+    <%= form.label :thumbnail %>
+    <%= form.file_field :thumbnail %>
+  </div>
+
   <%= form.select :category_id , options_for_select(@categories.map{|category| [category.name, category.id]})%>
   <%= form.select :language_id , options_for_select(@languages.map{|language| [language.name, language.id]})%>
  

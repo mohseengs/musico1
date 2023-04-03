@@ -17,6 +17,7 @@
         <td><%= song.name %></td>
         <td><%= link_to 'Show', song %></td>
         <td><%= link_to 'Destroy', playlist_playlist_song_path(:id => song.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td class='like_button'><%= render "likes/like_button" , likeable:song %><td>
       </tr>
     <% end %>
   </tbody>

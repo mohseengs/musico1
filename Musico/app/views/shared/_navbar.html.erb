@@ -1,0 +1,27 @@
+<nav class="navbar navbar-expand-lg navbar-light mt-3">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+                          
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <form class="form-inline">
+            <div class="input-group search-box">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">
+                        <%= image_tag 'icons/search.svg'%>
+                    </span>
+                </div>
+                <input type="text" class="form-control search-box" placeholder="search" aria-label="search" aria-describedby="basic-addon1">
+            </div>
+        </form>    
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <% if current_user.profile_picture != nil %>
+                    <%= image_tag current_user.profile_picture , alt: 'default/song-thumbnail.jpg' ,class: 'rounded-circle dp' %>
+                <% end %>
+                    <%= link_to current_user.name , users_path(current_user.id) , class: 'nav-username mr-2' %>
+            </li>
+        </ul>
+    </div>
+</nav>
+                 

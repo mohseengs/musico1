@@ -12,13 +12,18 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
+    <%= form.label :name , class: "form-label"%>
+    <%= form.text_field :name , class: "form-control"%>
   </div>
 
   <div class="field">
-    <%= form.label :description %>
-    <%= form.text_field :description %>
+    <%= form.label :description , class: "form-label"%>
+    <%= form.text_field :description , class: "form-control" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :thubnail , class: "form-label"%>
+    <%= form.file_field :thumbnail , class: "form-control" %>
   </div>
 
   <div class="actions">
