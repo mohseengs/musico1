@@ -3,21 +3,20 @@ class LikesController < ApplicationController
     @likes = current_user.likes
   end
 
-  def song
-    puts "like sdfksdfkdsjf sssssssssssssssssssssssssssssssssssssssssssssssssssss"
+  def create
     like = Like.new
     like.user = current_user
-    like.likeable = Song.find(params[:song_id])
+    if params[:playlist_id]
+      like.likeable = Playlist.find(params[:playlist_id])
+    elsif params[:song_id]
+      like.likeable = Song.find(params[:song_id])
+    end
     like.save!
-    render :index
+    render json: 'unlike' 
   end
 
-  def playlist
-    puts "like sdfksdfkdsjf pppppppppppppppppppppppppppppppppppppppppppppppppppppp"
-    like = Like.new
-    like.user = current_user
-    like.likeable = Playlist.find(params[:id])
-    like.save!
-    #render :index
+  def destroy
+    Like.find(params[:id]).destroy!
+    render json: 'unlike'    
   end
 end

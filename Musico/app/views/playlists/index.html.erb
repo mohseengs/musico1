@@ -8,7 +8,7 @@
       <th>Name</th>
       <th>Description</th>
       <th>Created by</th>
-      <th colspan="3"></th>
+      <th colspan="4"></th>
     </tr>
   </thead>
 
@@ -20,7 +20,15 @@
         <td><%= playlist.user.name %></td>
         <td><%= link_to 'Show', playlist_playlist_songs_path(playlist) %></td>
         <td><%= link_to 'Edit', edit_playlist_path(playlist) %></td>
-        <td><%= link_to 'Destroy', playlist, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% if !playlist.likes.find_by_user_id(current_user.id) %>
+          <% @method = :POST %>
+          <% @url = likes_path(playlist_id: playlist.id) %>
+        <% else %>
+          <% @method = :DELETE %>
+          <% @url = like_path(playlist.likes.find_by_user_id(id: current_user.id)) %>
+        <% end %>
+          
+        <td><%= link_to 'like','', class: :like_button %></td>
       </tr>
     <% end %>
   </tbody>
@@ -29,3 +37,21 @@
 <br>
 
 <%= link_to 'New Playlist', new_playlist_path %>
+
+<script>
+
+    $(document).ready(function() {
+        $('#like_button').on('click', function() {
+          alert( "mohseen");
+            $.ajax({
+                    url: '<%= @url %>',
+                    type: '<%= @method %>',
+                    dataType: 'json',
+                    success: function(data) {
+                    }
+            });
+
+        });
+    });
+
+</script>

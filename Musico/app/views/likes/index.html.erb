@@ -12,13 +12,13 @@
     <% @likes.each do |like| %>
       <tr>
         <td><%= like.likeable_type %></td>
-        <% if like.song? %>
-            <td><%= link_to songs_path(like.likeable_id) %></td>
-        <% elsif like.playlist? %>
-            <td><%= link_to playlists_playlist_songs_path(like.likeable_id) %></td>
+        <% if like.likeable_type ==  'Song' %>
+            <td><%= like.likeable.name %></td>
+            <td><%= link_to 'Show', songs_path %></td>
+        <% elsif like.likeable_type == 'Playlist' %>
+            <td><%= like.likeable.name %></td>
+            <td><%= link_to 'Show', playlist_playlist_songs_path(playlist_id: like.likeable_id) %></td>
         <% end %>
-        <td><%= link_to 'Show', song %></td>
-        <td><%= link_to 'Destroy', playlist_playlist_song_path(:id => song.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

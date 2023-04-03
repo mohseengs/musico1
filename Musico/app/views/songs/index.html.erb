@@ -19,6 +19,7 @@
         <td><%= song.language_id %></td>
         <td><%= song.category_id %></td>
         <td><%= link_to 'Show', song %></td>
+        <td><%= link_to 'like', likes_path(song_id: song.id) %></td>
         <td><%= link_to 'Edit', edit_song_path(song) %></td>
         <td><%= link_to 'Destroy', song, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
@@ -29,3 +30,31 @@
 <br>
 
 <%= link_to 'New Song', new_song_path %>
+
+<script>
+
+    $(document).ready(function() {
+        $('.like_button').on('click', function() {
+          alert(<%= likes_path(song_id: song.id) %>)
+            var query = $(this).val();
+            $.ajax({
+                    url: '/search_user/',
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function(data) {
+                        var checkbox = $('#song_search_query').html();
+                        $.each(data, function(index, value) {
+                            checkbox += "<input type='checkbox'  name='song[users][]' value='"+ value.id +"'>"
+                            checkbox += "<label for=" + value.id + " >" + value.name + "</lable>"
+                        });
+                        $('#users').append(checkbox);
+                    },
+                    error: function(xhr, textStatus, errorThrown) {
+                        console.log('Error fetching options: ' + errorThrown);
+                    }
+            });
+
+        });
+    });
+
+</script>
