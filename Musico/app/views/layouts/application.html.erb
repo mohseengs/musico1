@@ -71,7 +71,7 @@
         });
     });
 
-    $("#prev-button").on("click",playAudio);
+    $("#play-button").on("click",playAudio);
 
     function playAudio(){
         if(!isPlaying){
@@ -89,6 +89,20 @@
     audio.onpause = function() {
         isPlaying = false;
     };
+
+    $("#search-box").on("change",function(){
+      let query = $("#search-box").val()
+      alert(query);
+        $.ajax({
+            url: "/search/"+ query + ".js",
+            method: "GET" ,
+        });
+    });
+
+    $("#search-box").focus(function(){
+       window.location = "/search/";
+       $("#search-box").focus();
+    });
 
 </script>
   

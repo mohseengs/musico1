@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-    after_create :create_song_queue
+    after_create :create_song_queue , :create_history
     has_secure_password
     EMAIL_REGEX = /\A[^@\s]+@[^@\s]+\z/
     validates :email, presence: true, uniqueness: true, format: { with: EMAIL_REGEX, message: 'Invalid email' }
@@ -18,7 +18,7 @@ class User < ApplicationRecord
     has_many :likes , dependent: :destroy
 
     #history
-    has_many :histories , dependent: :destroy
+    has_one :history , dependent: :destroy
     
     #songs
     has_and_belongs_to_many :songs, dependent: :destroy
@@ -32,6 +32,7 @@ class User < ApplicationRecord
 
     #notification
     has_many :notifications , dependent: :destroy
+
     #playlist
     has_many :playlists , dependent: :destroy
 
@@ -42,6 +43,10 @@ class User < ApplicationRecord
 
     def create_song_queue
         SongQueue.create(user: self)
+    end
+
+    def create_history
+        History.create(user: self)
     end
 
 end

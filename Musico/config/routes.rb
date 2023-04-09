@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'history/index'
+  get 'history/update'
   root 'dashboard#index'
 
   get '/login' => 'sessions#new'
@@ -18,5 +20,9 @@ Rails.application.routes.draw do
   delete '/likes' => 'likes#destroy' , as: :unlike
   resources :song_queue , only: [:index , :update , :destroy]
   get 'change_song/:song_pointer' => 'song_queue#change_song' , as: :change_song
+  get '/search/:query' => 'search#search'
+  get '/search/' => 'search#index'
+
+
  
 end

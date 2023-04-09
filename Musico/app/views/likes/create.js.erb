@@ -1,1 +1,1 @@
-$("#<%= @likeable.id%>").parent().parent().html("<%= escape_javascript(render(partial: 'likes/like_button' , locals: {likeable: @likeable})) %>");
+$(".like_button #<%= @likeable.id%>").html("<%= escape_javascript(render(partial: 'likes/like_button' , locals: {likeable: @likeable})) %>");

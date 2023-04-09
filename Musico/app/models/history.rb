@@ -1,4 +1,4 @@
 class History < ApplicationRecord
-  belongs_to :playable , polymorphic: true
+  has_and_belongs_to_many :songs
   belongs_to :user
 end
