@@ -17,6 +17,6 @@ Rails.application.routes.draw do
   resources :likes, only: [:index, :create]
   delete '/likes' => 'likes#destroy' , as: :unlike
   resources :song_queue , only: [:index , :update , :destroy]
-  post 'change_song/:song_pointer' => 'song_queue#change_song' , as: :change_song
+  get 'change_song/:song_pointer' => 'song_queue#change_song' , as: :change_song
  
 end

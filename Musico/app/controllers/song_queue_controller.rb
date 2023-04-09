@@ -13,20 +13,13 @@ class SongQueueController < ApplicationController
   end
 
   def change_song
-     @song_queue.current_pointter = params[:song_pointer]
-     @current_pointer = @song_queue.current_pointer
-     puts " ================ " 
+    current_user.song_queue.current_pointter =  params[:song_pointer].to_i % (current_user.song_queue.songs.count)
+    current_user.song_queue.save
   end
 
   private
   def set_song_queue
-    if current_user.song_queue
       @song_queue = current_user.song_queue
-    else
-      @song_queue = SongQueue.new
-      @song_queue.user = current_user
-      @song_queue.current_pointter = 0
-    end
   end
 
   def song_queue_params 

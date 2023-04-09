@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+    after_create :create_song_queue
     has_secure_password
     EMAIL_REGEX = /\A[^@\s]+@[^@\s]+\z/
     validates :email, presence: true, uniqueness: true, format: { with: EMAIL_REGEX, message: 'Invalid email' }
@@ -36,6 +37,12 @@ class User < ApplicationRecord
 
     #scopes
     scope :search, -> (query, current_user_id){ where("name LIKE ?" , "%" + query + "%").where( "id <> ?", current_user_id )} 
+    
+    private
+
+    def create_song_queue
+        SongQueue.create(user: self)
+    end
 
 end
 
