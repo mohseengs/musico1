@@ -33,13 +33,14 @@
     <% else %>
       <div class="fluid-container">
         <div class="row">
-          <%= render 'shared/sidebar' %>
-          <div class="col-10 main">
+          <%= render 'shared/left_sidebar' %>
+          <div class="col-8 main">
             <div class='content'>
               <%= render 'shared/navbar' %>
               <%= yield %>
             </div>
           </div>
+          <%= render 'shared/right_sidebar' %>
         </div>
         <% if current_song %>
           <div class="row" id="music-bar">
@@ -71,7 +72,7 @@
         });
     });
 
-    $("#prev-button").on("click",playAudio);
+    $("#play-button").on("click",playAudio);
 
     function playAudio(){
         if(!isPlaying){
@@ -89,6 +90,34 @@
     audio.onpause = function() {
         isPlaying = false;
     };
+
+// Listen to Events
+let progress = 0;
+let myProgressBar = document.getElementById('myProgressBar');
+
+  audio.addEventListener('timeupdate', ()=>{ 
+      // Update Seekbar
+      progress = parseInt((audio.currentTime/audio.duration)* 100); 
+      myProgressBar.value = progress;
+  })
+
+  myProgressBar.addEventListener('change', ()=>{
+      audio.currentTime = myProgressBar.value * audio.duration/100;
+  })
+
+    $("#search-box").on("change",function(){
+      let query = $("#search-box").val()
+      alert(query);
+        $.ajax({
+            url: "/search/"+ query + ".js",
+            method: "GET" ,
+        });
+    });
+
+    $("#search-box").focus(function(){
+       window.location = "/search/";
+       $("#search-box").focus();
+    });
 
 </script>
   

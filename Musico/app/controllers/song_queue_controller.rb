@@ -14,7 +14,10 @@ class SongQueueController < ApplicationController
 
   def change_song
     current_user.song_queue.current_pointter =  params[:song_pointer].to_i % (current_user.song_queue.songs.count)
-    current_user.song_queue.save
+    current_user.song_queue.save!
+    current_user.history.songs.destroy(current_song)
+    current_user.history.songs << current_song
+    current_user.history.save!
   end
 
   private

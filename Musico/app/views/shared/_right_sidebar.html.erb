@@ -1,0 +1,30 @@
+ <div class="col-2 sidebar" >
+       <div class="row sidebar-group mt-5">
+        <div class="col-12">
+            <p class="sidebar-group-name">songs</p>
+        </div>
+        <div class="col-12">
+            <ul class="sidebar-items">
+                <% current_user.songs.each do |song| %>
+                    <li class="sidebar-item">
+                        <% if song.thumbnail.present?%>
+                            <%= image_tag song.thumbnail , class: "sidebar-icon" %>
+                        <%end%>
+                        <%= link_to song.name , song_path(song.id) , class: "sidebar-link" %>
+                    </li>
+                <% end %>
+            </ul>
+        </div>
+        <div class="col-12">
+            <a href="<%= new_song_path %>" >
+                <div class="col-12 btn d-flex justify-content-center align-content-center">
+                    <%= image_tag "icons/plus.svg" , class: "sidebar-icon mt-1" %>
+                    <p class="link p-0 m-0">song</p>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    
+                    
+</div>

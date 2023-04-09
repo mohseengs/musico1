@@ -1,1 +1,33 @@
 $("#music-bar").html("<%= escape_javascript(render(partial: 'shared/music_player')) %>");
+$("#next-button").on("click", function(){
+    $.ajax({
+        url: "/change_song/"+ <%= current_song_pointer.to_i + 1 %> + ".js",
+        method: "GET" ,
+    });
+});
+
+$("#prev-button").on("click",function(){
+    $.ajax({
+        url: "/change_song/"+ <%= current_song_pointer.to_i - 1 %> + ".js",
+        method: "GET" ,
+    });
+});
+
+$("#play-button").on("click",playAudio);
+
+function playAudio(){
+    if(!isPlaying){
+        audio.play();
+        playButton.src = "assets/icons/pause-circle.svg";
+    }
+    else{
+        audio.pause();
+        playButton.src = "assets/icons/play-circle.svg";
+    }    
+}
+audio.onplaying = function() {
+    isPlaying = true;
+};
+audio.onpause = function() {
+    isPlaying = false;
+};

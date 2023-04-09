@@ -1,0 +1,10 @@
+<div class="row song-head p-3">
+    <div class="col-12 p-0">
+        <a href="<%= user_path(artist.id)%>">
+            <%= image_tag artist.profile_picture , class: "thumbnail" %>
+        </a>
+    </div>
+     <div class="col-12 pl-1">
+        <h5 class="song-name mb-0 link"><%= artist.name %></h5>
+    </div>
+</div>

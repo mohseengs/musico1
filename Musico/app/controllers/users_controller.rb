@@ -1,6 +1,9 @@
 class UsersController < ApplicationController
   before_action :set_user, only: %i[ show edit update destroy ]
-  layout "authentication"
+
+  def index
+    @users = User.where.not(id: current_user.id)
+  end
 
   # GET /users/1 or /users/1.json
   def show

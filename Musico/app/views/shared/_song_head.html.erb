@@ -1,8 +1,16 @@
-<div class="row mr-2 ml-2 d-flex justify-content-around">
-    <div class="col-2 p-3 recently-played">
-        <img src="images/music-album3.jpg" alt="">
-            <p class="recent-song-name mb-0">havana</p>
-            <p class="recent-song-artist-name">dua lipa</p>
-        </div>
+<div class="row song-head p-3">
+    <div class="col-12 p-0">
+        <a href="<%= song_path(song)%>">
+            <%= image_tag song.thumbnail , class: "thumbnail" %>
+        </a>
     </div>
-<div>
+     <div class="col-12 pl-1">
+        <h5 class="song-name mb-0 link"><%= song.name %></h5>
+    </div>
+    <div class='col-2 p-1 like_button'>
+        <%= render "likes/like_button" , likeable:song %>
+    </div>
+    <div class='col-2 p-1 like_button'>
+        <%= link_to image_tag("icons/plus.svg"), song_queue_path(song.id), method: :patch%>
+    </div>
+</div>

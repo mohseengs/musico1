@@ -1,37 +1,38 @@
 <%= form_with(model: song) do |form| %>
   <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
+    <%= form.label :name , class: "form-lable" %>
+    <%= form.text_field :name , class: "form-control"%>
   </div>
 
   <div class="field">
-    <%= form.label :song %>
-    <%= form.file_field :audio %>
+    <%= form.label :song , class: "form-lable" %>
+    <%= form.file_field :audio , class: "form-control-file"%>
   </div>
 
   <div class="field">
-    <%= form.label :thumbnail %>
-    <%= form.file_field :thumbnail %>
+    <%= form.label :thumbnail , class: "form-lable" %>
+    <%= form.file_field :thumbnail , class: "form-control-file" %>
   </div>
 
-  <%= form.select :category_id , options_for_select(@categories.map{|category| [category.name, category.id]})%>
-  <%= form.select :language_id , options_for_select(@languages.map{|language| [language.name, language.id]})%>
+  <%= form.select :category_id , options_for_select(@categories.map{|category| [category.name, category.id]}), class: "form-select"%>
+  <%= form.select :language_id , options_for_select(@languages.map{|language| [language.name, language.id]}), class: "form-select"%>
  
   <div class="field">
-    <%= form.label :serach_user %>
-    <%= form.text_field :search_query, id: 'song_search_query' %>
+    <%= form.label :serach_user , class: "form-lable"%>
+    <%= form.text_field :search_query, id: 'song_search_query' , class: "form-control" %>
   </div>
+  
 
   <div id="users">
   </div>
 
 
-  <h3>selected users</h3>
+  <h6 class="mt-2">selected users</h6>
   <div id="selected_users">
       <%= hidden_field_tag 'song[user_ids][]' , current_user.id%> 
   </div>
   
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit "Upload" ,  class: "btn" %>
   </div>
 <% end %>

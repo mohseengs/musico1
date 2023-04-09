@@ -1,7 +1,7 @@
 :root{
-    --white: #E7EBF0;
+    --white: #f1f3f7;
     --pale-white: #D3DAE4;
-    --purple-white: #DFDDED;
+    --purple-white: #e7e5f5;
     --bright-white: #ffffff;
     --text-color: #2c2c2c;
     --light-text-color: #555555;
@@ -11,11 +11,15 @@ body{
     font-family: 'Poppins';
     background: linear-gradient(180deg, var(--purple-white),var(--white));
     height: 100vh;
-    width: 100vw;
-    overflow: hidden;
+    width: 97vw;
+   
 }
 h1, h2, h3, h4, h5, h6{
     font-weight: bold;
+}
+p{
+    font-weight: 200;
+    font-size: smaller;
 }
 .sidebar{
     padding-left: 30px;
@@ -82,8 +86,7 @@ h1, h2, h3, h4, h5, h6{
 }
 .main{
     background-color: var(--white);
-    margin: 20px 0px 20px 0px;
-    border-radius: 1em;
+    padding: 0px;
 }
 .dp{
     width: 25px;
@@ -103,15 +106,19 @@ h1, h2, h3, h4, h5, h6{
     height: 250px;
     padding-left: 25px;
 }
-.released-artists-name, .recent-song-artist-name{
+.released-artists-name, .recent-song-artist-name , .artist-name{
     font-size: small;
     color: var(--light-text-color);
     justify-self: center;
 }
-.released-song-name , .recent-song-name{
+.released-song-name , .recent-song-name , .song-name{
     font-size: 0.8em;
     font-weight: bold;
     justify-self: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-decoration: none;
+    color: var(--text-color);
 }
 .time{
     color: var(--light-text-color);
@@ -193,3 +200,157 @@ h1, h2, h3, h4, h5, h6{
     height: 30px;
     width: 30px;
 }
+
+.song-head{
+    margin-top: 10px;
+    height: 250px;
+    border-radius: 1em;
+}
+
+.song-head .thumbnail {
+    height: 170px;
+    width: 100%;
+    border-radius: 1em;
+    padding: 0px;
+}
+
+.song-head:hover{
+    background:  linear-gradient(180deg, var(--purple-white),var(--white));
+}
+
+
+.song-queue-head{
+    margin-top: 10px;
+    height: 75px;
+    border-radius: 1em;
+    margin: 10px;
+    background-color: var(--bright-white);
+}
+
+.song-queue-head .thumbnail {
+    height: 67px;
+    width:  70px;
+    border-radius: 1em;
+    padding: 0px;
+}
+
+.song-queue-head:hover{
+    background:  linear-gradient(180deg, var(--purple-white),var(--white));
+}
+
+
+/*authentication*/
+.auth-form-card{
+    padding-left: 150px;
+    padding-right: 150px;
+    background-color: white;
+    padding-top:10%;
+  
+}
+
+.auth-form-card-img{
+    background: url("bg.jpg");
+    background-size: auto 100%;
+
+    background-repeat: no-repeat;
+    height: 100vh;
+
+    filter: grayscale(100%);
+}
+
+.auth-form-text-on-img{
+    position: absolute;
+    bottom: 0;
+    margin-bottom: 100px;
+    margin-left: 50px;
+}
+.auth-form-text-on-img p{
+    color: white;
+    font-size: 20px;
+}
+.auth-form-text-on-img h1{
+    color: white;
+   font-size: 100px;
+}
+
+.auth-btn , .sidebar-btn , .btn{
+    border-radius: 1rem;   
+    width: 100%;
+    border: none;
+    color: var(--text-color);
+    background-color: var(--accent);
+    margin-top: 10px;
+    outline: none;
+}
+
+.auth-btn:hover , .btn:hover{
+    background-color: black;
+    color: white;
+    outline: none;
+}
+
+.auth-btn:focus {
+    outline: white;
+}
+.sidebar-btn:hover {
+    background-color: var(--bright-white);
+    color: var(--accent);
+    outline: none;
+}
+
+.auth-btn:focus {
+    outline: white;
+}
+
+.auth-link {
+    color: var(--light-text-color);
+    text-decoration: none;
+}
+.auth-link:hover {
+    color: var(--accent);
+}
+
+
+
+  .form-control-file::-webkit-file-upload-button {
+    visibility: hidden;
+  }
+  .form-control-file::before {
+    content: 'choose file';
+    display: inline-block;
+    background-color: var(--accent);
+    border-radius: 0.5em;
+    padding: 5px 8px;
+    margin-bottom: 10px;
+    outline: none;
+    white-space: nowrap;
+    -webkit-user-select: none;
+    cursor: pointer;
+  }
+  .form-control-file:hover::before {
+    border-color: black;
+  }
+  .form-control-file:active::before {
+    background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
+  }
+
+    input[type='range'] {
+      width: 100%;
+      -webkit-appearance: none;
+      background-color: var(--bright-white);
+    }
+    
+    input[type='range']::-webkit-slider-runnable-track {
+      height: 100%;
+      color: var(--accent);
+    }
+    
+    input[type='range']::-webkit-slider-thumb {
+      width: 20px;
+      -webkit-appearance: none;
+      height: 20px;
+      cursor: pointer;
+      background: var(--accent);
+      box-shadow: -400px 0 0 400px var(--accent);
+    }
+

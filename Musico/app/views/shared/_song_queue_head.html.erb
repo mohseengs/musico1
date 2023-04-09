@@ -1,0 +1,14 @@
+<div class="row song-queue-head p-1">
+    <div class="col-1 p-0">
+        <a href="<%= song_path(song)%>">
+            <%= image_tag song.thumbnail , class: "thumbnail" %>
+        </a>
+    </div>
+    <div class="col-8 p-1">
+        <h6><%= song.name %></h6>
+        <p> <%= song.users.first.name %></p>
+    </div> 
+    <div class='col-2 p-1 like_button justify-content-center d-flex align-content-center'>
+        <%= render "likes/like_button" , likeable:song %>
+    </div>  
+</div>
