@@ -10,7 +10,38 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_03_22_122905) do
+ActiveRecord::Schema.define(version: 2023_04_11_050211) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "active_storage_attachments", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "record_type", null: false
+    t.bigint "record_id", null: false
+    t.bigint "blob_id", null: false
+    t.datetime "created_at", null: false
+    t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
+    t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
+  end
+
+  create_table "active_storage_blobs", force: :cascade do |t|
+    t.string "key", null: false
+    t.string "filename", null: false
+    t.string "content_type"
+    t.text "metadata"
+    t.string "service_name", null: false
+    t.bigint "byte_size", null: false
+    t.string "checksum", null: false
+    t.datetime "created_at", null: false
+    t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
+
+  create_table "active_storage_variant_records", force: :cascade do |t|
+    t.bigint "blob_id", null: false
+    t.string "variation_digest", null: false
+    t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
+  end
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
@@ -26,7 +57,7 @@ ActiveRecord::Schema.define(version: 2023_03_22_122905) do
   end
 
   create_table "group_sessions", force: :cascade do |t|
-    t.integer "group_admin_id", null: false
+    t.bigint "group_admin_id", null: false
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -34,18 +65,20 @@ ActiveRecord::Schema.define(version: 2023_03_22_122905) do
   end
 
   create_table "group_sessions_users", id: false, force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "group_session_id", null: false
+    t.bigint "user_id", null: false
+    t.bigint "group_session_id", null: false
   end
 
   create_table "histories", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.string "playable_type"
-    t.integer "playable_id"
+    t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["playable_type", "playable_id"], name: "index_histories_on_playable"
     t.index ["user_id"], name: "index_histories_on_user_id"
+  end
+
+  create_table "histories_songs", id: false, force: :cascade do |t|
+    t.bigint "history_id", null: false
+    t.bigint "song_id", null: false
   end
 
   create_table "languages", force: :cascade do |t|
@@ -56,16 +89,16 @@ ActiveRecord::Schema.define(version: 2023_03_22_122905) do
 
   create_table "likes", force: :cascade do |t|
     t.string "likeable_type", null: false
-    t.integer "likeable_id", null: false
+    t.bigint "likeable_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "user_id", null: false
+    t.bigint "user_id", null: false
     t.index ["likeable_type", "likeable_id"], name: "index_likes_on_likeable"
     t.index ["user_id"], name: "index_likes_on_user_id"
   end
 
   create_table "notifications", force: :cascade do |t|
-    t.integer "user_id", null: false
+    t.bigint "user_id", null: false
     t.integer "notifiable_type", null: false
     t.integer "notifiable_id", null: false
     t.integer "status", default: 0
@@ -75,7 +108,7 @@ ActiveRecord::Schema.define(version: 2023_03_22_122905) do
   end
 
   create_table "playlists", force: :cascade do |t|
-    t.integer "user_id", null: false
+    t.bigint "user_id", null: false
     t.string "name"
     t.text "description"
     t.datetime "created_at", precision: 6, null: false
@@ -84,12 +117,12 @@ ActiveRecord::Schema.define(version: 2023_03_22_122905) do
   end
 
   create_table "playlists_songs", id: false, force: :cascade do |t|
-    t.integer "song_id", null: false
-    t.integer "playlist_id", null: false
+    t.bigint "song_id", null: false
+    t.bigint "playlist_id", null: false
   end
 
   create_table "song_queues", force: :cascade do |t|
-    t.integer "user_id", null: false
+    t.bigint "user_id", null: false
     t.integer "current_pointter"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -97,14 +130,14 @@ ActiveRecord::Schema.define(version: 2023_03_22_122905) do
   end
 
   create_table "song_queues_songs", id: false, force: :cascade do |t|
-    t.integer "song_id", null: false
-    t.integer "song_queue_id", null: false
+    t.bigint "song_id", null: false
+    t.bigint "song_queue_id", null: false
   end
 
   create_table "songs", force: :cascade do |t|
     t.string "name"
-    t.integer "language_id"
-    t.integer "category_id"
+    t.bigint "language_id"
+    t.bigint "category_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["category_id"], name: "index_songs_on_category_id"
@@ -112,12 +145,9 @@ ActiveRecord::Schema.define(version: 2023_03_22_122905) do
   end
 
   create_table "songs_users", id: false, force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "song_id", null: false
+    t.bigint "user_id", null: false
+    t.bigint "song_id", null: false
   end
-
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
 
   create_table "users", force: :cascade do |t|
     t.string "name"
@@ -128,6 +158,8 @@ ActiveRecord::Schema.define(version: 2023_03_22_122905) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "group_sessions", "users", column: "group_admin_id"
   add_foreign_key "histories", "users"
   add_foreign_key "likes", "users"

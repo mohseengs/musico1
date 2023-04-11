@@ -5,14 +5,17 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'%>
-    
   </head>
 
   <body>
 
-     <% if controller_name == "registrations" || controller_name == "sessions"  %>
+    <% if controller_name == "registrations" || controller_name == "sessions"  %>
       <div class="container-fluid auth-bg" > 
         <div class="row">
             <div class="col-6 auth-form-card">
@@ -27,8 +30,80 @@
             </div>
         </div>
       </div>
-      <% else %>
-          <%= yield %>
+    <% else %>
+      <div class="fluid-container">
+        <div class="row">
+          <%= render 'shared/sidebar' %>
+          <div class="col-10 main">
+            <div class='content'>
+              <%= render 'shared/navbar' %>
+              <%= yield %>
+            </div>
+          </div>
+        </div>
+        <% if current_song %>
+          <div class="row" id="music-bar">
+            <%= render 'shared/music_player'%>
+          </div>
+        <% end %>
     <% end %>
   </body>
+
+<script>
+    let playButton = document.getElementById('play-button');
+    let nextButton = document.getElementById('next-button');
+    let prevButton = document.getElementById('prev-button');
+
+    let audio = document.getElementById("song-audio");
+    let isPlaying = false;
+
+    $("#next-button").on("click", function(){
+        $.ajax({
+            url: "/change_song/"+ <%= current_song_pointer.to_i + 1 %> + ".js",
+            method: "GET" ,
+        });
+    });
+
+    $("#prev-button").on("click",function(){
+        $.ajax({
+            url: "/change_song/"+ <%= current_song_pointer.to_i - 1 %> + ".js",
+            method: "GET" ,
+        });
+    });
+
+    $("#play-button").on("click",playAudio);
+
+    function playAudio(){
+        if(!isPlaying){
+            audio.play();
+            playButton.src = "assets/icons/pause-circle.svg";
+        }
+        else{
+            audio.pause();
+            playButton.src = "assets/icons/play-circle.svg";
+        }    
+    }
+    audio.onplaying = function() {
+        isPlaying = true;
+    };
+    audio.onpause = function() {
+        isPlaying = false;
+    };
+
+    $("#search-box").on("change",function(){
+      let query = $("#search-box").val()
+      alert(query);
+        $.ajax({
+            url: "/search/"+ query + ".js",
+            method: "GET" ,
+        });
+    });
+
+    $("#search-box").focus(function(){
+       window.location = "/search/";
+       $("#search-box").focus();
+    });
+
+</script>
+  
 </html>

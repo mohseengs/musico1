@@ -1,0 +1,68 @@
+// Place all the styles related to the authentication controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+
+.auth-form-card{
+    padding-left: 150px !important;
+    padding-right: 150px !important;
+    background-color: var(--white) !important;
+    margin-top:10% !important;
+  
+}
+
+.auth-form-card-img{
+    background: url("bg.jpg");
+    background-size: auto 100%;
+
+    background-repeat: no-repeat;
+    height: 100vh !important;
+
+    filter: grayscale(100%);
+}
+
+.auth-form-text-on-img{
+    position: absolute;
+    bottom: 0;
+    margin-bottom: 100px;
+    margin-left: 50px;
+}
+.auth-form-text-on-img p{
+    color: white;
+    font-size: 20px;
+}
+.auth-form-text-on-img h1{
+    color: white;
+   font-size: 100px;
+}
+
+
+.auth-btn{
+    border-radius: 0.5rem !important;   
+    width: 100%;
+    border: none;
+    color: var(--text-black)  !important;
+    background-color: var(--accent) !important;
+    margin-top: 10px;
+    outline: none;
+}
+
+.auth-btn:hover{
+    background-color: black !important;
+    color: white !important;
+    outline: none;
+
+}
+
+.auth-btn:focus {
+    outline: white !important;
+}
+
+.auth-link{
+    color: var(--text-light-black) !important;
+    text-decoration: none;
+}
+.auth-link:hover{
+    color: var(--text-black) !important;
+    background-color: white !important;
+}

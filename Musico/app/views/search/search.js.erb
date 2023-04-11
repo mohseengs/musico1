@@ -1,0 +1,14 @@
+$("#search-result").html("<%= escape_javascript(render(partial: 'search_result' , locals: {songs: @songs , playlists: @playlists , users: @users})) %>");
+$("#search-box").on("change",function(){
+    let query = $("#search-box").val()
+    alert(query);
+    $.ajax({
+        url: "/search/"+ query + ".js",
+        method: "GET" ,
+    });
+});
+
+$("#search-box").focus(function(){
+    window.location = "/search/";
+    $("#search-box").focus();
+});

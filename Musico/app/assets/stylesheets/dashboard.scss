@@ -1,3 +1,178 @@
 // Place all the styles related to the dashboard controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+:root{
+    --white: #E7EBF0;
+    --pale-white: #D3DAE4;
+    --purple-white: #DFDDED;
+    --bright-white: #ffffff;
+    --text-color: #2c2c2c;
+    --light-text-color: #555555;
+    --accent: #C7B1F0;
+}
+body{
+    font-family: 'Poppins';
+    background: linear-gradient(180deg, var(--purple-white),var(--white));
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+}
+h1, h2, h3, h4, h5, h6{
+    font-weight: bold;
+}
+.sidebar{
+    padding-left: 30px;
+}
+.semi-heading{
+    font-size: medium;
+}
+.brand-name{
+    display: block;
+    color: var(--text-color);
+    font-size: larger;
+    font-weight: bold;
+    text-decoration-style: none;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.sidebar-group{
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+.sidebar-group-name{
+    display: block;
+    margin-left: 10px;
+    font-size: 0.7em;
+    font-weight: bolder;
+    color: var(--light-text-color);
+    letter-spacing: 0.5px;
+
+}
+.sidebar-items{
+    list-style: none;
+    padding-left: 0px;
+}
+.sidebar-item{
+    padding: 10px;
+    border-radius: 1em;
+}
+.active{
+    background-color: var(--bright-white);
+}
+.sidebar-link{
+    text-decoration: none;
+    font-size: 0.9em;
+    font-weight: bolder;
+    color: var(--text-color);
+}
+.sidebar-icon{
+    width: 16px;
+    height: 16px;
+    margin-right: 10px;
+}
+.sidebar-icon:hover{
+    text-decoration: none;
+}
+.input-group-text{
+    background-color: var(--bright-white);
+    border: none;
+    border-radius: 0.7em;
+}
+.search-box{
+    border: none;
+    border-radius: 0.7em;
+}
+.main{
+    background-color: var(--white);
+    margin: 20px 0px 20px 0px;
+    border-radius: 1em;
+}
+.dp{
+    width: 25px;
+    height: 25px;
+}
+.nav-username{
+    font-size: small;
+    color: var(--text-color);
+    font-weight: bolder;
+}
+.released-thumbnail img{
+    width: 100%;
+    height: 100%;
+    border-radius: 1em;
+}
+.released-songs{
+    height: 250px;
+    padding-left: 25px;
+}
+.released-artists-name, .recent-song-artist-name{
+    font-size: small;
+    color: var(--light-text-color);
+    justify-self: center;
+}
+.released-song-name , .recent-song-name{
+    font-size: 0.8em;
+    font-weight: bold;
+    justify-self: center;
+}
+.time{
+    color: var(--light-text-color);
+    font-size: x-small;
+}
+.recently-played{
+    margin-top: 10px;
+    height: 200px;
+    border-radius: 1em;
+}
+.recently-played img{
+    height: 100%;
+    width: 100%;
+    border-radius: 1em;
+    padding: 0px;
+}
+.recently-played:hover{
+    background:  linear-gradient(180deg, var(--purple-white),var(--white));
+}
+.recenty-palyed-sidebar{
+    height: 50px;
+    padding: 5px;
+    background-color: var(--bright-white);
+    border-radius: 1em
+}
+.recenty-palyed-sidebar img{
+    height: 100%;
+    width: 100%;
+    border-radius: 0.5em;
+}
+.btn{
+    border-radius: 0.7em;
+}
+.btn-primary{
+    background-color: var(--accent);
+    border: none;
+    
+}
+.music-bar{
+    height: 65px;
+    background-color: var(--bright-white);
+    padding: 0px 25px 0px 25px;
+    margin-left: 25px;
+    margin-right: 25px;
+    border-radius: 1em;
+    overflow:hidden;
+}
+.progress{
+    height: 5px;
+    width: 100%;
+    background-color: var(--bright-white);
+}
+.progress-bar{
+   background-color: var(--accent);
+}
+.content{
+    overflow-x: auto ;
+}
+.content::-webkit-scrollbar {
+    overflow-x: auto ;
+}

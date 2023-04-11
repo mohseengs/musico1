@@ -1,8 +1,12 @@
 class User < ApplicationRecord
+    after_create :create_song_queue , :create_history
     has_secure_password
     EMAIL_REGEX = /\A[^@\s]+@[^@\s]+\z/
     validates :email, presence: true, uniqueness: true, format: { with: EMAIL_REGEX, message: 'Invalid email' }
-    validates :name, :password, :dob, presence: :true
+    validates :name, :dob, presence: :true
+    
+    #active storage
+    has_one_attached :profile_picture
 
     #follow
     has_many :follower_follows, foreign_key: :following_id, class_name: "Follow" , dependent: :destroy
@@ -14,7 +18,7 @@ class User < ApplicationRecord
     has_many :likes , dependent: :destroy
 
     #history
-    has_many :histories , dependent: :destroy
+    has_one :history , dependent: :destroy
     
     #songs
     has_and_belongs_to_many :songs, dependent: :destroy
@@ -28,6 +32,22 @@ class User < ApplicationRecord
 
     #notification
     has_many :notifications , dependent: :destroy
+
+    #playlist
+    has_many :playlists , dependent: :destroy
+
+    #scopes
+    scope :search, -> (query, current_user_id){ where("name LIKE ?" , "%" + query + "%").where( "id <> ?", current_user_id )} 
+    
+    private
+
+    def create_song_queue
+        SongQueue.create(user: self)
+    end
+
+    def create_history
+        History.create(user: self)
+    end
 
 end
 

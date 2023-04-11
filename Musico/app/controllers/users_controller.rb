@@ -1,9 +1,19 @@
 class UsersController < ApplicationController
   before_action :set_user, only: %i[ show edit update destroy ]
 
+  def index
+    @users = User.where.not(id: current_user.id)
+  end
+
   # GET /users/1 or /users/1.json
   def show
   end
+
+
+  # GET /users/1/edit
+  def edit
+  end
+
 
   # PATCH/PUT /users/1 or /users/1.json
   def update

@@ -1,0 +1,12 @@
+<div class="songs m-3">
+<h1>Songs</h1>
+  <div class="row">
+  <% @songs.each do |song| %>
+      <div class="col-2">
+        <%= render partial: "shared/song_head" , locals: { song: song } %>
+      </div>
+  <% end %>
+  </div>
+</div>
+ 
+

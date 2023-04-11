@@ -1,0 +1,96 @@
+ <div class="col-2 sidebar" >
+    <a href="#"class="brand-name">musico</a>
+    <div class="row sidebar-group">
+        <div class="col-12">
+            <p class="sidebar-group-name">menu</p>
+        </div>
+        <div class="col-12">
+            <ul class="sidebar-items">
+                <a href="<%= root_path %>">
+                    <li class="sidebar-item active">
+                        <%= image_tag "icons/home.svg" , class: "sidebar-icon" %>
+                        <p class="m-0 p-0 d-inline sidebar-link">home</p> 
+                    </li>
+                </a>
+                <a href="<%= search_path %>">
+                    <li class="sidebar-item">
+                        <%= image_tag "icons/search.svg" , class: "sidebar-icon" %>
+                        <p class="m-0 p-0 d-inline sidebar-link">search</p> 
+                    </li>
+                </a>
+                <a href="<%= playlists_path %>">
+                    <li class="sidebar-item">
+                        <%= image_tag "icons/list.svg" , class: "sidebar-icon rounded" %>
+                        <p class="m-0 p-0 d-inline sidebar-link">playlists</p> 
+                    </li>
+                </a>
+                <a href="<%= songs_path %>">
+                    <li class="sidebar-item">
+                        <%= image_tag "icons/list.svg" , class: "sidebar-icon rounded" %>
+                        <p class="m-0 p-0 d-inline sidebar-link">songs</p> 
+                    </li>
+                </a>
+                <a href="<%= users_path %>">
+                    <li class="sidebar-item">
+                        <%= image_tag "icons/list.svg" , class: "sidebar-icon rounded" %>
+                        <p class="m-0 p-0 d-inline sidebar-link">users</p> 
+                    </li>
+                </a>
+            </ul>
+        </div>
+    </div>
+    <div class="row sidebar-group">
+        <div class="col-12">
+            <p class="sidebar-group-name">playlists</p>
+        </div>
+        <div class="col-12">
+            <ul class="sidebar-items">
+                <% current_user.playlists.each do |playlist| %>
+                    <li class="sidebar-item">
+                        <% if playlist.thumbnail.present?%>
+                            <%= image_tag playlist.thumbnail , class: "sidebar-icon" %>
+                        <%end%>
+                        <%= link_to playlist.name , playlist_path(playlist.id) , class: "sidebar-link" %>
+                    </li>
+                <% end %>
+            </ul>
+        </div>
+        <div class="col-12">
+            <a href="<%= new_playlist_path %>" >
+                <div class="col-12 btn d-flex justify-content-center align-content-center">
+                    <%= image_tag "icons/plus.svg" , class: "sidebar-icon mt-1" %>
+                    <p class="link p-0 m-0">playlist</p>
+                </div>
+            </a>
+        </div>
+    </div>
+
+       <div class="row sidebar-group mt-auto">
+        <div class="col-12">
+            <p class="sidebar-group-name">songs</p>
+        </div>
+        <div class="col-12">
+            <ul class="sidebar-items">
+                <% current_user.songs.each do |song| %>
+                    <li class="sidebar-item">
+                        <% if song.thumbnail.present?%>
+                            <%= image_tag song.thumbnail , class: "sidebar-icon" %>
+                        <%end%>
+                        <%= link_to song.name , song_path(song.id) , class: "sidebar-link" %>
+                    </li>
+                <% end %>
+            </ul>
+        </div>
+        <div class="col-12">
+            <a href="<%= new_song_path %>" >
+                <div class="col-12 btn d-flex justify-content-center align-content-center">
+                    <%= image_tag "icons/plus.svg" , class: "sidebar-icon mt-1" %>
+                    <p class="link p-0 m-0">song</p>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    
+                    
+</div>

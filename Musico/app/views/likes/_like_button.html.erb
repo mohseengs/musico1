@@ -1,0 +1,10 @@
+<% if likeable.class.name == 'Song' && current_user.likes.find_by(likeable: Song.find(likeable.id)) || 
+      likeable.class.name == 'Playlist' && current_user.likes.find_by(likeable: Playlist.find(likeable.id)) %>
+    <%= link_to image_tag("icons/heart-filled.svg"), unlike_path(likeable_type: likeable.class.name , likeable_id: likeable.id) , method: :delete , remote:true ,id: likeable.id %>
+    <%= hidden_field_tag 'url', unlike_path(likeable_type: likeable.class.name , likeable_id: likeable.id)  %>
+    <%= hidden_field_tag 'method', 'DELETE'  %>
+<% else %>
+    <%= link_to image_tag("icons/heart.svg"), likes_path(likeable_type: likeable.class.name , likeable_id: likeable.id) , method: :post , remote:true , id: likeable.id %>
+    <%= hidden_field_tag 'url', likes_path(likeable_type: likeable.class.name , likeable_id: likeable.id)  %>
+    <%= hidden_field_tag 'method', 'POST'  %>
+<% end %>

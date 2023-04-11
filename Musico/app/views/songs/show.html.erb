@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @song.name %>
+</p>
+
+<p>
+  <strong>Genres:</strong>
+  <%= @song.category.name %>
+</p>
+
+<p>
+  <strong>Language:</strong>
+  <%= @song.language.name %>
+</p>
+
+<p>
+  <strong>users:</strong>
+  <% @song.users.each do |user|%>
+    <%= user.name%>
+  <% end %>
+</p>
+
+<td class='like_button'><%= render "likes/like_button" , likeable:@song %><td>
+<%= link_to 'Edit', edit_song_path(@song) %> |
+<%= link_to 'Back', songs_path %>

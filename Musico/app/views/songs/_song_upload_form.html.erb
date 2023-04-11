@@ -1,0 +1,37 @@
+<%= form_with(model: song) do |form| %>
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :song %>
+    <%= form.file_field :audio %>
+  </div>
+
+  <div class="field">
+    <%= form.label :thumbnail %>
+    <%= form.file_field :thumbnail %>
+  </div>
+
+  <%= form.select :category_id , options_for_select(@categories.map{|category| [category.name, category.id]})%>
+  <%= form.select :language_id , options_for_select(@languages.map{|language| [language.name, language.id]})%>
+ 
+  <div class="field">
+    <%= form.label :serach_user %>
+    <%= form.text_field :search_query, id: 'song_search_query' %>
+  </div>
+
+  <div id="users">
+  </div>
+
+
+  <h3>selected users</h3>
+  <div id="selected_users">
+      <%= hidden_field_tag 'song[user_ids][]' , current_user.id%> 
+  </div>
+  
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
