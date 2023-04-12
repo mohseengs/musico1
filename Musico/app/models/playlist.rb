@@ -4,6 +4,8 @@ class Playlist < ApplicationRecord
   has_many :likes, as: :likeable , dependent: :destroy
   belongs_to :user
 
+  validates :name , :thumbnail, presence: :true
+
   scope :search, -> (query){ where("name LIKE ?" , "%" + query + "%")} 
 
 end

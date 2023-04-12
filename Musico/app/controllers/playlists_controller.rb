@@ -15,6 +15,10 @@ class PlaylistsController < ApplicationController
   def edit
   end
 
+  def show
+    redirect_to playlist_playlist_songs_path(@playlist)
+  end
+
   # POST /playlists or /playlists.json
   def create
     @playlist = Playlist.new(playlist_params)

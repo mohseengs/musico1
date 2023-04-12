@@ -19,7 +19,7 @@
                 <% if current_user.profile_picture != nil %>
                     <%= image_tag current_user.profile_picture , alt: 'default/song-thumbnail.jpg' ,class: 'rounded-circle dp' %>
                 <% end %>
-                    <%= link_to current_user.name , users_path(current_user.id) , class: 'nav-username mr-2' %>
+                    <%= link_to current_user.name , user_path(current_user.id) , class: 'nav-username mr-2' %>
             </li>
         </ul>
     </div>

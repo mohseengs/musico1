@@ -1,4 +1,4 @@
-class HistoryController < ApplicationController
+class HistoriesController < ApplicationController
   def index
     @history = current_user.history
   end

@@ -11,8 +11,15 @@ body{
     font-family: 'Poppins';
     background: linear-gradient(180deg, var(--purple-white),var(--white));
     height: 100vh;
-    width: 97vw;
+    width: 100vw;
+    transition: all 2s ease;
    
+}
+a{
+    text-decoration: none;
+}
+a:hover{
+    text-decoration: none;
 }
 h1, h2, h3, h4, h5, h6{
     font-weight: bold;
@@ -21,8 +28,12 @@ p{
     font-weight: 200;
     font-size: smaller;
 }
+img{
+    object-fit: cover;
+}
 .sidebar{
-    padding-left: 30px;
+    height: 100%;
+    background: linear-gradient(180deg, var(--purple-white),var(--white));
 }
 .semi-heading{
     font-size: medium;
@@ -57,6 +68,10 @@ p{
 .sidebar-item{
     padding: 10px;
     border-radius: 1em;
+    transition: all 0.2s ease;
+}
+.sidebar-item:hover{
+    transform: scale(1.07);
 }
 .active{
     background-color: var(--bright-white);
@@ -86,7 +101,9 @@ p{
 }
 .main{
     background-color: var(--white);
-    padding: 0px;
+    padding: 0px 35px 0px 25px;
+    height: 100vh;
+    
 }
 .dp{
     width: 25px;
@@ -194,6 +211,7 @@ p{
 .music-controll-icon img{
     height: 25px;
     width: 25px;
+    cursor: pointer;
 }
 
 .music-controll-icon #play-button{
@@ -214,6 +232,25 @@ p{
     padding: 0px;
 }
 
+.song-head .play
+{
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+    position: absolute;
+    top: 35%;
+    left: 35%;
+    padding: 20px;
+    opacity: 0;
+    transition: all 0.4s ease ;
+}
+
+.song-head:hover .play
+{
+    background-color: var(--bright-white);
+    opacity: 1;
+}
+
 .song-head:hover{
     background:  linear-gradient(180deg, var(--purple-white),var(--white));
 }
@@ -223,8 +260,8 @@ p{
     margin-top: 10px;
     height: 75px;
     border-radius: 1em;
-    margin: 10px;
     background-color: var(--bright-white);
+
 }
 
 .song-queue-head .thumbnail {
@@ -234,7 +271,8 @@ p{
     padding: 0px;
 }
 
-.song-queue-head:hover{
+.song-queue-head:hover 
+{
     background:  linear-gradient(180deg, var(--purple-white),var(--white));
 }
 
@@ -354,3 +392,21 @@ p{
       box-shadow: -400px 0 0 400px var(--accent);
     }
 
+/*profile*/
+
+.cover{
+    height: 125px;
+    margin-left: 20px;
+    margin-right: 20px;
+    width: 100%;
+    border-radius: 2em;
+}
+
+.profile_picture{
+    height: 125px;
+    width: 125px;
+    border-radius: 50%;
+    border: 5px solid var(--bright-white);
+    margin-left: 25px;
+    margin-top:  -60px;
+}

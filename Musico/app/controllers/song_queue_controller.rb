@@ -9,7 +9,8 @@ class SongQueueController < ApplicationController
   end
 
   def destroy
-    @song_queue.songs.find_by_id(params[:id]).destroy!
+    @song_queue.songs.destroy(Song.find_by_id(params[:id]))
+    render :index
   end
 
   def change_song
@@ -18,6 +19,22 @@ class SongQueueController < ApplicationController
     current_user.history.songs.destroy(current_song)
     current_user.history.songs << current_song
     current_user.history.save!
+  end
+
+  def play_playlist
+    current_user.song_queue.current_pointter = 0
+    current_user.song_queue.songs.clear
+    current_user.song_queue.songs << Playlist.find(params[:playlist_id]).songs
+    current_user.song_queue.save!
+    redirect_to request.referrer
+  end
+
+  def play_song
+    current_user.song_queue.current_pointter = 0
+    current_user.song_queue.songs.clear
+    current_user.song_queue.songs << Song.find(params[:song_id])
+    current_user.song_queue.save!
+    redirect_to request.referrer
   end
 
   private

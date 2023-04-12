@@ -9,6 +9,8 @@ class Song < ApplicationRecord
   belongs_to :language
   belongs_to :category
 
+  validates :audio, :thumbnail, :name, presence: true
+
   scope :search, -> (query){ where("name LIKE ?" , "%" + query + "%")} 
 
 end

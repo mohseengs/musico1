@@ -14,7 +14,7 @@
                 <%= render "likes/like_button" , likeable:song %>
             </div>
             <div class="col-6">
-                <%= link_to image_tag("icons/x-circle.svg"), song_queue_path(song.id) , method: :delete%>
+                <%= link_to image_tag("icons/x-circle.svg"), playlist_playlist_song_url(id: song.id) , method: :delete%>
             </div>
         </div>  
     </div>

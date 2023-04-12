@@ -21,7 +21,7 @@ class ApplicationController < ActionController::Base
 
     def current_song_pointer 
         if current_user
-            @current_song_pointer = current_user.song_queue.current_pointter || 1
+            @current_song_pointer = current_user.song_queue.current_pointter || 0
         end
     end
     helper_method :current_song_pointer

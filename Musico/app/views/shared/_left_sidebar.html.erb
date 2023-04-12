@@ -1,4 +1,4 @@
- <div class="col-2 sidebar" >
+ <div class="col-2 sidebar fixed-top" >
     <a href="#"class="brand-name">musico</a>
     <div class="row sidebar-group">
         <div class="col-12">
@@ -7,33 +7,39 @@
         <div class="col-12">
             <ul class="sidebar-items">
                 <a href="<%= root_path %>">
-                    <li class="sidebar-item active">
+                    <li class="sidebar-item <%= "active" if controller_name == "dashboard" %>">
                         <%= image_tag "icons/home.svg" , class: "sidebar-icon" %>
                         <p class="m-0 p-0 d-inline sidebar-link">home</p> 
                     </li>
                 </a>
                 <a href="<%= search_path %>">
-                    <li class="sidebar-item">
+                    <li class="sidebar-item <%= "active" if controller_name == "search" %>">
                         <%= image_tag "icons/search.svg" , class: "sidebar-icon" %>
                         <p class="m-0 p-0 d-inline sidebar-link">search</p> 
                     </li>
                 </a>
                 <a href="<%= playlists_path %>">
-                    <li class="sidebar-item">
+                    <li class="sidebar-item <%= "active" if controller_name == "playlists" %>">
                         <%= image_tag "icons/list.svg" , class: "sidebar-icon rounded" %>
                         <p class="m-0 p-0 d-inline sidebar-link">playlists</p> 
                     </li>
                 </a>
                 <a href="<%= songs_path %>">
-                    <li class="sidebar-item">
-                        <%= image_tag "icons/list.svg" , class: "sidebar-icon rounded" %>
+                    <li class="sidebar-item <%= "active" if controller_name == "songs" %>">
+                        <%= image_tag "icons/music.svg" , class: "sidebar-icon rounded" %>
                         <p class="m-0 p-0 d-inline sidebar-link">songs</p> 
                     </li>
                 </a>
                 <a href="<%= users_path %>">
-                    <li class="sidebar-item">
-                        <%= image_tag "icons/list.svg" , class: "sidebar-icon rounded" %>
-                        <p class="m-0 p-0 d-inline sidebar-link">users</p> 
+                    <li class="sidebar-item <%= "active" if controller_name == "users" %>">
+                        <%= image_tag "icons/users.svg" , class: "sidebar-icon rounded" %>
+                        <p class="m-0 p-0 d-inline sidebar-link">Artists</p> 
+                    </li>
+                </a>
+                 <a href="<%= likes_path %>">
+                    <li class="sidebar-item <%= "active" if controller_name == "likes" %>">
+                        <%= image_tag "icons/heart.svg" , class: "sidebar-icon rounded" %>
+                        <p class="m-0 p-0 d-inline sidebar-link">liked</p> 
                     </li>
                 </a>
             </ul>

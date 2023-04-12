@@ -1,8 +1,9 @@
 <div class="row song-head p-3">
     <div class="col-12 p-0">
-        <a href="<%= song_path(song)%>">
-            <%= image_tag song.thumbnail , class: "thumbnail" %>
-        </a>
+        <%= image_tag song.thumbnail , class: "thumbnail" %>
+        <a href="<%= play_song_path(song)%>">
+            <%= image_tag "icons/play.svg" , class: "play" %>
+        </a>    
     </div>
      <div class="col-12 pl-1">
         <h5 class="song-name mb-0 link"><%= song.name %></h5>

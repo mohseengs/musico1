@@ -24,8 +24,10 @@
             <div class="col-6 auth-form-card-img">
             
                 <div class="row auth-form-text-on-img">
+                  <div class="col-12">
                     <h1>Musico</h1>
                     <p>music that suits your taste</p>
+                  </div>
                 </div>
             </div>
         </div>
@@ -34,7 +36,7 @@
       <div class="fluid-container">
         <div class="row">
           <%= render 'shared/left_sidebar' %>
-          <div class="col-8 main">
+          <div class="col-8 main offset-2">
             <div class='content'>
               <%= render 'shared/navbar' %>
               <%= yield %>
@@ -44,67 +46,17 @@
         </div>
         <% if current_song %>
           <div class="row" id="music-bar">
-            <%= render 'shared/music_player'%>
+            <div class="col-12">
+              <%= render 'shared/music_player'%>
+            </div>
           </div>
         <% end %>
     <% end %>
   </body>
 
 <script>
-    let playButton = document.getElementById('play-button');
-    let nextButton = document.getElementById('next-button');
-    let prevButton = document.getElementById('prev-button');
 
-    let audio = document.getElementById("song-audio");
-    let isPlaying = false;
-
-    $("#next-button").on("click", function(){
-        $.ajax({
-            url: "/change_song/"+ <%= current_song_pointer.to_i + 1 %> + ".js",
-            method: "GET" ,
-        });
-    });
-
-    $("#prev-button").on("click",function(){
-        $.ajax({
-            url: "/change_song/"+ <%= current_song_pointer.to_i - 1 %> + ".js",
-            method: "GET" ,
-        });
-    });
-
-    $("#play-button").on("click",playAudio);
-
-    function playAudio(){
-        if(!isPlaying){
-            audio.play();
-            playButton.src = "assets/icons/pause-circle.svg";
-        }
-        else{
-            audio.pause();
-            playButton.src = "assets/icons/play-circle.svg";
-        }    
-    }
-    audio.onplaying = function() {
-        isPlaying = true;
-    };
-    audio.onpause = function() {
-        isPlaying = false;
-    };
-
-// Listen to Events
-let progress = 0;
-let myProgressBar = document.getElementById('myProgressBar');
-
-  audio.addEventListener('timeupdate', ()=>{ 
-      // Update Seekbar
-      progress = parseInt((audio.currentTime/audio.duration)* 100); 
-      myProgressBar.value = progress;
-  })
-
-  myProgressBar.addEventListener('change', ()=>{
-      audio.currentTime = myProgressBar.value * audio.duration/100;
-  })
-
+  
     $("#search-box").on("change",function(){
       let query = $("#search-box").val()
       alert(query);

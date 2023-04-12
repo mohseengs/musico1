@@ -1,52 +1,115 @@
  <div class="row">
-                <div class="col-12">
-                    <audio id="song-audio" src="<%= rails_blob_url current_song.audio %>"></audio>
-                    <div class="music-bar fixed-bottom ml-5 mr-5 mb-2 p-0">
-                        <div class="container-fluid p-0">
-                            <input type="range" class="progress form-range" id="myProgressBar" min="0" value="0" max="100">
-                            <div class="row pl-2 pr-2">
-                                <div class="col-5">
-                                    <div class="row">
-                                        <div class="col-2">
-                                            <%= image_tag current_song.thumbnail , style: "height: 48px; width: 48px;" , class: "m-2 rounded float-start" %>
-                                        </div>
-                                        <div class="float-start col-9 d-flex flex-column align-content-between">
-                                            <h6 class="p-0 m-1"><%= current_song.name %></h6>
-                                            <p>dua lipa</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-2 d-flex align-content-center">
-                                    <div class="row controls d-flex align-content-center">
-                                        <div class="col-4 music-controll-icon">
-                                             <%= image_tag "icons/prev-song-grey.svg", id: "prev-button" %>
-                                        </div>
-                                        <div class="col-4 music-controll-icon">
-                                            <%= image_tag "icons/play-circle.svg", id: "play-button" %>
-                                        </div>
-                                        <div class="col-4 music-controll-icon">
-                                             <%= image_tag "icons/next-song-grey.svg", id: "next-button" %>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-5 d-flex justify-content-end">
-                                    <div class="row controls d-flex align-content-center">
-                                        <div class="col-4 music-controll-icon">
-                                            <%= image_tag "icons/volume-1-grey.svg", id: "vol-button" %>
-                                        </div>
-                                        <div class="col-4 music-controll-icon">
-                                            <a href="<%= song_queue_index_path %>">
-                                            <%= image_tag "icons/list-grey.svg", id: "queue-button" %>
-                                            </a>
-                                        </div>
-                                        <div class="col-4 music-controll-icon">
-                                            <%= image_tag "icons/heart-grey.svg", id: "like-button"%>
-                                        </div>
-                                    </div>
-                                </div>   
+    <div class="col-12">
+        <audio id="song-audio" src="<%= rails_blob_url current_song.audio %>"></audio>
+        <div class="music-bar fixed-bottom ml-5 mr-5 mb-2 p-0">
+            <div class="container-fluid p-0">
+                <input type="range" class="progress form-range" id="progress-bar" min="0" value="0" max="100">
+                <div class="row pl-2 pr-2">
+                    <div class="col-5">
+                        <div class="row">
+                            <div class="col-2">
+                                <%= image_tag current_song.thumbnail , style: "height: 48px; width: 48px;" , class: "m-2 rounded float-start" %>
+                            </div>
+                            <div class="float-start col-9 d-flex flex-column align-content-between">
+                                <h6 class="p-0 m-1"><%= current_song.name %></h6>
+                                <p><%= current_song.users.first.name %></p>
                             </div>
                         </div>
                     </div>
+                    <div class="col-2 d-flex align-content-center">
+                        <div class="row controls d-flex align-content-center">
+                            <div class="col-4 music-controll-icon">
+                                    <%= image_tag "icons/prev-song-grey.svg", id: "prev-button" %>
+                            </div>
+                            <div class="col-4 music-controll-icon">
+                                <%= image_tag "icons/play-circle.svg", id: "play-button" %>
+                            </div>
+                            <div class="col-4 music-controll-icon">
+                                    <%= image_tag "icons/next-song-grey.svg", id: "next-button" %>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-5 d-flex justify-content-end">
+                        <div class="row controls d-flex align-content-center">
+                            <div class="col-4 music-controll-icon">
+                                <%= image_tag "icons/volume-1-grey.svg", id: "vol-button" %>
+                            </div>
+                            <div class="col-4 music-controll-icon">
+                                <a href="<%= song_queue_index_path %>">
+                                <%= image_tag "icons/list-grey.svg", id: "queue-button" %>
+                                </a>
+                            </div>
+                            <div class="col-4 music-controll-icon">
+                                <div class='col-12 p-1 like_button'>
+                                    <%= render "likes/like_button" , likeable:current_song %>
+                                </div>
+                            </div>
+                        </div>
+                    </div>   
                 </div>
             </div>
+        </div>
+    </div>
+</div>
+
+<script>
+  let progressBar = document.getElementById('progress-bar');
+    let audio = document.getElementById("song-audio");
+    let progress = parseInt(document.cookie.split(";")[0].split("=")[1]);
+
+    $('#next-button').on("click", function(){
+        $.ajax({
+            url: "/change_song/"+ <%= current_song_pointer.to_i + 1 %> + ".js",
+            method: "GET" ,
+            success: function(){
+              progress = 0
+              play();
+              document.cookie = "songProgress="+progress;
+            }
+        });
+    });
+
+    $('#prev-button').on("click",function(){
+        $.ajax({
+            url: "/change_song/"+ <%= current_song_pointer.to_i - 1 %> + ".js",
+            method: "GET" ,
+            success: function(){
+              progress = 0
+              play();
+              document.cookie = "songProgress="+progress;
+            }
+        });
+    });
+
+    $('#play-button').on("click",function(){
+      if(audio.paused || audio.currentTime < 0){
+          play();
+      }
+      else{
+          pause();
+      } 
+    });
+
+    function play(){
+      audio.play();
+      $('#play-button').attr('src', "assets/icons/pause-circle.svg");
+    }
+    function pause(){
+      audio.pause();
+      $('#play-button').attr('src', "assets/icons/play-circle.svg");
+
+    }
+
+    audio.addEventListener('timeupdate', ()=>{ 
+          progress = parseInt((audio.currentTime/audio.duration)* 100); 
+          progressBar.value = progress;
+          document.cookie = "songProgress="+progress;
+    });
+
+
+    progressBar.addEventListener('change', ()=>{
+    audio.currentTime = progressBar.value * audio.duration/100;
+    });
+
+</script>

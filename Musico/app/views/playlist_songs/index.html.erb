@@ -1,24 +1,37 @@
-<p id="notice"><%= notice %></p>
+<div class="row">
+  <div class="col-12">
+    <div class="row mt-3">
+      <%= image_tag @playlist.thumbnail , class: "cover" %>
+      <div class="col-12 ml-3 mt-2">
+        <h4><%= @playlist.name %></h4>
+        <p><%= @playlist.description %></p>
+      </div>
+      <% if current_user == @playlist.user %>
+        <div class="col-12 ml-3">
+          <div class="row">
+            <div class="col-2">
+              <%= link_to "add song" , new_playlist_playlist_song_path , method: :get , class: "btn"%>
+            </div>
+            <div class="col-2">
+                <%= link_to "edit" , edit_playlist_path(@playlist) , method: :delete , class: "btn"%>
+            </div>
+          </div>
+        </div>
+      <% else %>
+          <%= link_to "logout" , logout_path , method: :delete , class: "btn"%>
+      <% end %>
+    </div>
+  </div>
+</div>
 
-<h1><%= @playlist.name %></h1>
-<h5><%= @playlist.description %></h5>
+<div class="songs m-3">
+<h4 class="m3">songs</h4>
+  <div class="row">
+  <% @playlist.songs.each do |song| %>
+      <div class="col-12">
+        <%= render partial: "playlist_song_head" , locals: { song: song } %>
+      </div>
+  <% end %>
+  </div>
+</div>
 
-<table>
-  <thead>
-    <tr>
-      <th>song</th>
-      <th colspan="2"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @playlist.songs.each do |song| %>
-      <tr>
-        <td><%= song.name %></td>
-        <td><%= link_to 'Show', song %></td>
-        <td><%= link_to 'Destroy', playlist_playlist_song_path(:id => song.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <td class='like_button'><%= render "likes/like_button" , likeable:song %><td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>

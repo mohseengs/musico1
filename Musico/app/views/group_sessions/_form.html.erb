@@ -1,0 +1,22 @@
+<%= form_with(model: group_session) do |form| %>
+  <% if group_session.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(group_session.errors.count, "error") %> prohibited this group_session from being saved:</h2>
+
+      <ul>
+        <% group_session.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
