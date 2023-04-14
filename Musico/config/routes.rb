@@ -27,4 +27,6 @@ Rails.application.routes.draw do
   resources :follows, only: [:index, :create]
   delete '/follow' => 'follows#destroy' , as: :unfollow
 
+  resources :notifications, only: [:index]
+
 end

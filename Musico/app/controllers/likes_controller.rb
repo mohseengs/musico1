@@ -8,7 +8,9 @@ class LikesController < ApplicationController
     like.user = current_user
     @likeable = get_likeable
     like.likeable = @likeable
-    like.save!
+    if like.save!
+      send_notification(@likeable)
+    end
   end
 
   def destroy
@@ -28,4 +30,18 @@ class LikesController < ApplicationController
   def like_params 
     params.require(:like).permit(:likeable_type , :likeable_id)
   end
+
+  def send_notification(likeable)
+    @notification = Notification.new
+    @notification.notifiable_id = likeable.id
+    @notification.notifiable_type = :like
+    @notification.sender = current_user
+    if params[:likeable_type] == "Song"
+      @notification.recievers << likeable.users
+    elsif params[:likeable_type] == "Playlist"
+      @notification.recievers << likeable.user
+    end
+    @notification.save!
+  end
+
 end

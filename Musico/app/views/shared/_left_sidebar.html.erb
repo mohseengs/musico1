@@ -36,10 +36,16 @@
                         <p class="m-0 p-0 d-inline sidebar-link">Artists</p> 
                     </li>
                 </a>
-                 <a href="<%= likes_path %>">
+                <a href="<%= likes_path %>">
                     <li class="sidebar-item <%= "active" if controller_name == "likes" %>">
                         <%= image_tag "icons/heart.svg" , class: "sidebar-icon rounded" %>
                         <p class="m-0 p-0 d-inline sidebar-link">liked</p> 
+                    </li>
+                </a>
+                <a href="<%= notifications_path %>">
+                    <li class="sidebar-item <%= "active" if controller_name == "notifications" %>">
+                        <%= image_tag "icons/bell.svg" , class: "sidebar-icon rounded" %>
+                        <p class="m-0 p-0 d-inline sidebar-link">notifications</p> 
                     </li>
                 </a>
             </ul>

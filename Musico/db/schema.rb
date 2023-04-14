@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_04_11_050211) do
+ActiveRecord::Schema.define(version: 2023_04_14_041903) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -98,13 +98,17 @@ ActiveRecord::Schema.define(version: 2023_04_11_050211) do
   end
 
   create_table "notifications", force: :cascade do |t|
-    t.bigint "user_id", null: false
+    t.integer "sender_id", null: false
     t.integer "notifiable_type", null: false
     t.integer "notifiable_id", null: false
     t.integer "status", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id"], name: "index_notifications_on_user_id"
+  end
+
+  create_table "notifications_users", id: false, force: :cascade do |t|
+    t.bigint "notification_id", null: false
+    t.bigint "user_id", null: false
   end
 
   create_table "playlists", force: :cascade do |t|
@@ -163,7 +167,6 @@ ActiveRecord::Schema.define(version: 2023_04_11_050211) do
   add_foreign_key "group_sessions", "users", column: "group_admin_id"
   add_foreign_key "histories", "users"
   add_foreign_key "likes", "users"
-  add_foreign_key "notifications", "users"
   add_foreign_key "playlists", "users"
   add_foreign_key "song_queues", "users"
   add_foreign_key "songs", "categories"

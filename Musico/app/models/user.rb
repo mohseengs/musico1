@@ -32,6 +32,7 @@ class User < ApplicationRecord
 
     #notification
     has_many :notifications , dependent: :destroy
+    has_and_belongs_to_many :recieved_notifications , class_name: "Notification"
 
     #playlist
     has_many :playlists , dependent: :destroy
