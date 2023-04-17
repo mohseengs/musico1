@@ -4,10 +4,7 @@ class LikesController < ApplicationController
   end
 
   def create
-    like = Like.new
-    like.user = current_user
-    @likeable = get_likeable
-    like.likeable = @likeable
+    like = Like.new(likeable: get_likeable , user: current_user)
     if like.save!
       send_notification(like)
     end
@@ -32,10 +29,7 @@ class LikesController < ApplicationController
   end
 
   def send_notification(like)
-    @notification = Notification.new
-    @notification.notifiable_id = like.id
-    @notification.notifiable_type = :like
-    @notification.sender = current_user
+    @notification = Notification.new(notifiable_id: like.id , notifiable_type: :like , sender: current_user )
     if params[:likeable_type] == "Song"
       @notification.recievers << like.likeable.users
     elsif params[:likeable_type] == "Playlist"

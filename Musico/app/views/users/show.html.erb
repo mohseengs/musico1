@@ -1,43 +1,45 @@
-<div class="row">
-  <div class="col-12">
-    <div class="row mt-3 mb-4 d-flex justify-content-center">
-      <div class="col-12 d-flex justify-content-center">
-        <%= image_tag @user.profile_picture , class: "profile_picture"%>
-      </div>
-      <div class="col-12 ml-3 mt-2 d-flex justify-content-center">
-        <h4><%= @user.name %></h4>
-      </div>
-      <% if current_user != @user %>
-        <div class='col-2 ml-4 follow_button'>
-          <%= render "follows/follow_button" , user: @user %>
+<turbo-frame id="main">
+  <div class="row">
+    <div class="col-12">
+      <div class="row mt-3 mb-4 d-flex justify-content-center">
+        <div class="col-12 d-flex justify-content-center">
+          <%= image_tag @user.profile_picture , class: "profile_picture"%>
         </div>
-      <% else %>
-        <div class='col-2 ml-4 logout_button'>
-          <%= link_to "logout" , logout_path , method: :delete , class: "btn"%>
+        <div class="col-12 ml-3 mt-2 d-flex justify-content-center">
+          <h4><%= @user.name %></h4>
         </div>
+        <% if current_user != @user %>
+          <div class='col-2 ml-4 follow_button'>
+            <%= render "follows/follow_button" , user: @user %>
+          </div>
+        <% else %>
+          <div class='col-2 ml-4 logout_button'>
+            <%= link_to "logout" , logout_path , method: :delete , class: "btn"%>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class="songs m-3">
+    <h5>Songs</h5>
+    <div class="row">
+      <% @user.songs.each do |song| %>
+          <div class="col-3">
+            <%= render partial: "shared/song_head" , locals: { song: song } %>
+          </div>
       <% end %>
     </div>
   </div>
-</div>
 
-<div class="songs m-3">
-  <h5>Songs</h5>
-  <div class="row">
-    <% @user.songs.each do |song| %>
+  <div class="songs m-3">
+  <h5>Playlists</h5>
+    <div class="row">
+    <% @user.playlists.each do |playlist| %>
         <div class="col-3">
-          <%= render partial: "shared/song_head" , locals: { song: song } %>
+          <%= render partial: "shared/playlist_head" , locals: { playlist: playlist } %>
         </div>
     <% end %>
+    </div>
   </div>
-</div>
-
-<div class="songs m-3">
-<h5>Playlists</h5>
-  <div class="row">
-  <% @user.playlists.each do |playlist| %>
-      <div class="col-3">
-        <%= render partial: "shared/playlist_head" , locals: { playlist: playlist } %>
-      </div>
-  <% end %>
-  </div>
-</div>
+</turbo-frame>

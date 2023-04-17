@@ -26,15 +26,18 @@ class UsersController < ApplicationController
 
   # DELETE /users/1 or /users/1.json
   def destroy
-    @user.destroy!
-    session[:user_id] = nil
-    redirect_to users_url, notice: "User was successfully destroyed."
+      @user.destroy!
+      session[:user_id] = nil
+      redirect_to login_path, notice: "User was successfully destroyed."
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
       @user = User.find(params[:id])
+      if(@user != current_user) 
+        render status: 400
+      end
     end
 
     # Only allow a list of trusted parameters through.

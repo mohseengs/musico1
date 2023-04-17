@@ -24,25 +24,25 @@
                         <p class="m-0 p-0 d-inline sidebar-link">playlists</p> 
                     </li>
                 </a>
-                <a href="<%= songs_path %>" data-turbo-frame="main">
+                <a href="<%= songs_path %>" data-turbo-frame="songs">
                     <li class="sidebar-item <%= "active" if controller_name == "songs" %>">
                         <%= image_tag "icons/music.svg" , class: "sidebar-icon rounded" %>
                         <p class="m-0 p-0 d-inline sidebar-link">songs</p> 
                     </li>
                 </a>
-                <a href="<%= users_path %>" data-turbo-frame="main">
+                <a href="<%= users_path %>" data-turbo-frame="users">
                     <li class="sidebar-item <%= "active" if controller_name == "users" %>">
                         <%= image_tag "icons/users.svg" , class: "sidebar-icon rounded" %>
                         <p class="m-0 p-0 d-inline sidebar-link">Artists</p> 
                     </li>
                 </a>
-                <a href="<%= likes_path %>" data-turbo-frame="main">
+                <a href="<%= likes_path %>" data-turbo-frame="likes">
                     <li class="sidebar-item <%= "active" if controller_name == "likes" %>">
                         <%= image_tag "icons/heart.svg" , class: "sidebar-icon rounded" %>
                         <p class="m-0 p-0 d-inline sidebar-link">liked</p> 
                     </li>
                 </a>
-                <a href="<%= notifications_path %>" data-turbo-frame="main">
+                <a href="<%= notifications_path %>" data-turbo-frame="notifications">
                     <li class="sidebar-item <%= "active" if controller_name == "notifications" %>">
                         <%= image_tag "icons/bell.svg" , class: "sidebar-icon rounded" %>
                         <p class="m-0 p-0 d-inline sidebar-link">notifications</p> 

@@ -1,7 +1,6 @@
 $("#search-result").html("<%= escape_javascript(render(partial: 'search_result' , locals: {songs: @songs , playlists: @playlists , users: @users})) %>");
-$("#search-box").on("change",function(){
+$("#search-box").on("input",function(){
     let query = $("#search-box").val()
-    alert(query);
     $.ajax({
         url: "/search/"+ query + ".js",
         method: "GET" ,

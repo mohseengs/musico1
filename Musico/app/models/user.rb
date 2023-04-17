@@ -31,7 +31,7 @@ class User < ApplicationRecord
     has_many :admin_for_group_sessions, foreign_key: 'group_admin_id', class_name: 'GroupSession'
 
     #notification
-    has_many :notifications , dependent: :destroy
+    has_many :notifications , foreign_key: 'sender_id', class_name: "Notification"
     has_and_belongs_to_many :recieved_notifications , class_name: "Notification"
 
     #playlist

@@ -21,6 +21,8 @@ class SongsController < ApplicationController
 
   # GET /songs/1/edit
   def edit
+    @categories = Category.all
+    @languages = Language.all
   end
 
   def create

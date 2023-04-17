@@ -1,5 +1,6 @@
 :root{
     --white: #f1f3f7;
+    --light-white: #fafbfc;
     --pale-white: #D3DAE4;
     --purple-white: #e7e5f5;
     --bright-white: #ffffff;
@@ -223,13 +224,13 @@ img{
 .song-head{
     margin-top: 10px;
     height: 250px;
-    border-radius: 1em;
+    border-radius: 0.5em;
 }
 
 .song-head .thumbnail {
     height: 170px;
     width: 100%;
-    border-radius: 1em;
+    border-radius: 0.5em;
     padding: 0px;
 }
 
@@ -256,7 +257,6 @@ img{
     background:  linear-gradient(180deg, var(--purple-white),var(--white));
 }
 
-
 .song-queue-head{
     margin-top: 5px;
     height: 75px;
@@ -274,7 +274,7 @@ img{
 
 .song-queue-head:hover 
 {
-    background:  linear-gradient(180deg, var(--purple-white),var(--white));
+    background:  var(--light-white);
 }
 
 

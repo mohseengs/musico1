@@ -1,12 +1,14 @@
-<div class="songs m-3">
-<h4 class="m3 mt-5 mb-5">Playlists</h4>
-  <div class="row">
-  <% @playlists.each do |playlist| %>
-      <div class="col-3">
-        <%= render partial: "shared/playlist_head" , locals: { playlist: playlist } %>
-      </div>
-  <% end %>
+<turbo-frame id="main">
+  <div class="songs m-3">
+  <h4 class="m3 mt-5 mb-5">Playlists</h4>
+    <div class="row">
+    <% @playlists.each do |playlist| %>
+        <div class="col-3">
+          <%= render partial: "shared/playlist_head" , locals: { playlist: playlist } %>
+        </div>
+    <% end %>
+    </div>
   </div>
-</div>
+</turbo-frame>
  
 

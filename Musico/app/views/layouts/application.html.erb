@@ -38,10 +38,8 @@
           <%= render 'shared/left_sidebar' %>
           <div class="col-8 main offset-2">
             <div class='content'>
-              <%= render 'shared/navbar' %>
-              <turbo-frame id="main">
-                <%= yield %>
-              </turbo-frame>
+              <%= render 'shared/navbar' %>    
+              <%= yield %>
             </div>
           </div>
           <%= render 'shared/right_sidebar' %>
@@ -59,9 +57,8 @@
 <script>
 
   
-    $("#search-box").on("change",function(){
+    $("#search-box").on("input",function(){
       let query = $("#search-box").val()
-      alert(query);
         $.ajax({
             url: "/search/"+ query + ".js",
             method: "GET" ,

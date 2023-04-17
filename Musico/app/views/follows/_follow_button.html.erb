@@ -1,9 +1,9 @@
 <% if current_user.followings.find_by_id(user.id) %>
-    <%= link_to "unfollow", unfollow_path(user_id: user.id) , method: :delete , remote:true ,id: user.id , class: "btn" %>
-    <%= hidden_field_tag 'url', unfollow_path(user_id: user.id) %>
+    <%= link_to "unfollow", unfollow_path(following_id: user.id) , method: :delete , remote:true ,id: user.id , class: "btn" %>
+    <%= hidden_field_tag 'url', unfollow_path(following_id: user.id) %>
     <%= hidden_field_tag 'method', 'DELETE'  %>
 <% else %>
-    <%= link_to "follow", follows_path(user_id: user.id), method: :post , remote:true , id: user.id , class: "btn" %>
-    <%= hidden_field_tag 'url', follows_path(user_id: user.id) %>
+    <%= link_to "follow", follows_path(following_id: user.id), method: :post , remote:true , id: user.id , class: "btn" %>
+    <%= hidden_field_tag 'url', follows_path(following_id: user.id) %>
     <%= hidden_field_tag 'method', 'POST'  %>
 <% end %>

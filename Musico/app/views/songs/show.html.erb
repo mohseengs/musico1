@@ -1,27 +1,44 @@
-<p id="notice"><%= notice %></p>
+<div class="row">
+  <div class="col-12">
+    <div class="row mt-3">
+      <div class="col-5 ml-3">
+          <%= image_tag @song.thumbnail , style: "height:300px; border-radius:0.5em;" %>
+      </div>
+     
+      <div class="col-12 ml-3 mt-2">
+        <h4><%= @song.name %></h4>
+      </div>
+      <div class="col-12 ml-3 mt-2">
+        <div class="row">
+          <div class='col-2 p-1 like_button ml-3'>
+            <%= render "likes/like_button" , likeable:@song %>
+          </div>
+        </div>
+      </div>
+        <div class="col-12 ml-3 mb-4">
+          <div class="row">
+            <% if @song.users.include? current_user %>
+              <div class="col-2">
+                  <%= link_to "edit" , song_path(@song) , method: :patch , class: "btn",  target: "_top" , data: { turbo: false }%>
+              </div>
+            <% end %>
+            <div class="col-2">
+                <%= link_to "play" , play_song_path(@song) , method: :get , class: "btn",  target: "_top" , data: { turbo: false }%>
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>
+</div>
 
-<p>
-  <strong>Name:</strong>
-  <%= @song.name %>
-</p>
-
-<p>
-  <strong>Genres:</strong>
-  <%= @song.category.name %>
-</p>
-
-<p>
-  <strong>Language:</strong>
-  <%= @song.language.name %>
-</p>
-
-<p>
-  <strong>users:</strong>
-  <% @song.users.each do |user|%>
-    <%= user.name%>
+<div class="songs m-3">
+<h4 class="mt-4 mb-4">Artists</h4>
+  <div class="row">
+  <% @song.users.each do |user| %>
+      <div class="col-3">
+        <%= render partial: "shared/artist_head" , locals: { artist: user } %>
+      </div>
   <% end %>
-</p>
+  </div>
+</div>
 
-<td class='like_button'><%= render "likes/like_button" , likeable:@song %><td>
-<%= link_to 'Edit', edit_song_path(@song) %> |
-<%= link_to 'Back', songs_path %>
