@@ -1,0 +1,11 @@
+<div class="row song-queue-head p-1">
+    <div class="col-1 p-0">
+        <a href="<%= user_path(notification.sender)%>">
+            <%= image_tag notification.sender.profile_picture , class: "dp" %>
+        </a>
+    </div>
+    <div class="col-9 p-1">
+        <h6><%= notification.sender %></h6>
+    </div> 
+    
+</div>

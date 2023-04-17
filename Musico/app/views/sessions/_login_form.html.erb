@@ -1,4 +1,8 @@
 <h3 class="mb-4">Login</h3>
+<% flash.each do |name, msg| %>
+    <%= content_tag :div, msg, class: "alert alert-danger" %>
+<% end %>
+
 <%= form_with  url: login_path, method: :post do |form| %>
     
     <div class="field">

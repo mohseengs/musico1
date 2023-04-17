@@ -10,7 +10,7 @@
                         <% if song.thumbnail.present?%>
                             <%= image_tag song.thumbnail , class: "sidebar-icon" %>
                         <%end%>
-                        <%= link_to song.name , song_path(song.id) , class: "sidebar-link" %>
+                        <%= link_to song.name , song_path(song.id) , class: "sidebar-link" , data: {turbo_frame: "main"} %>
                     </li>
                 <% end %>
             </ul>

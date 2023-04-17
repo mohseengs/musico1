@@ -39,7 +39,9 @@
           <div class="col-8 main offset-2">
             <div class='content'>
               <%= render 'shared/navbar' %>
-              <%= yield %>
+              <turbo-frame id="main">
+                <%= yield %>
+              </turbo-frame>
             </div>
           </div>
           <%= render 'shared/right_sidebar' %>

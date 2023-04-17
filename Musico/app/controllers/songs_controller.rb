@@ -24,8 +24,10 @@ class SongsController < ApplicationController
   end
 
   def create
-      @song = Song.create(song_params)
-      if @song.save!
+      @song = Song.new(song_params)
+      @categories = Category.all
+      @languages = Language.all
+      if @song.save
         redirect_to song_url(@song), notice: "Song was successfully created."
       else
         render :new, status: :unprocessable_entity

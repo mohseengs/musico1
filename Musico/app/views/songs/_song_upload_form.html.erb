@@ -1,4 +1,15 @@
 <%= form_with(model: song) do |form| %>
+  <% if song.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(song.errors.count, "error") %> prohibited this playlist from being saved:</h2>
+
+      <ul>
+        <% song.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
   <div class="field">
     <%= form.label :name , class: "form-lable" %>
     <%= form.text_field :name , class: "form-control"%>

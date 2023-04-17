@@ -1,0 +1,17 @@
+<div class="row song-queue-head p-1">
+    <div class="col-1 p-0">
+            <a href="<%= playlist_path(playlist)%>">
+                <%= image_tag playlist.thumbnail , class: "thumbnail" %>
+            </a>
+    </div>
+    <div class="col-9 p-1">
+        <h6><%= playlist.name %></h6>
+    </div> 
+    <div class="col-2">
+        <div class='row p-1 pt-4 justify-content-center d-flexlike_button align-content-center'>
+            <div class="col-6">
+                <h6><%= notification.sender.name%> liked your playlist</h6>   
+            </div>
+        </div>  
+    </div>
+</div>

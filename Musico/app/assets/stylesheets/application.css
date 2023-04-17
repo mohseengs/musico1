@@ -9,10 +9,11 @@
 }
 body{
     font-family: 'Poppins';
-    background: linear-gradient(180deg, var(--purple-white),var(--white));
+    background: var(--purple-white);
     height: 100vh;
     width: 100vw;
     transition: all 2s ease;
+    overflow-x: hidden;
    
 }
 a{
@@ -102,7 +103,7 @@ img{
 .main{
     background-color: var(--white);
     padding: 0px 35px 0px 25px;
-    height: 100vh;
+    min-height: 120vh;
     
 }
 .dp{
@@ -409,4 +410,21 @@ img{
     border: 5px solid var(--bright-white);
     margin-left: 25px;
     margin-top:  -60px;
+}
+
+/*notification*/
+.notification-head{
+    height: 150px;
+    width: 100%;
+    background-color: var(--bright-white);
+}
+.notification-head .dp{
+    height: 50px;
+    width: 50px;
+    border-radius:  50%;
+}
+.notification-head .thumbnail{
+    height: 100px;
+    width: 100px;
+    border-radius:1em;
 }

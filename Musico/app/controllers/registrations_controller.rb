@@ -2,6 +2,7 @@ class RegistrationsController < ApplicationController
   skip_before_action :check_login
 
   def new
+    @user = User.new
   end
 
   def create
@@ -15,6 +16,6 @@ class RegistrationsController < ApplicationController
 
   private
   def user_params
-    params.permit(:name, :email, :password, :password_confirmation, :dob , :profile_picture)
+    params.require(:user).permit(:name, :email, :password, :password_confirmation, :dob , :profile_picture)
   end
 end
