@@ -36,7 +36,7 @@
                                 <%= image_tag "icons/volume-1-grey.svg", id: "vol-button" %>
                             </div>
                             <div class="col-4 music-controll-icon">
-                                <a href="<%= song_queue_index_path %>">
+                                <a href="<%= song_queue_index_path %>" data-turbo-frame="main">
                                 <%= image_tag "icons/list-grey.svg", id: "queue-button" %>
                                 </a>
                             </div>

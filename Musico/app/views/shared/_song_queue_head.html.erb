@@ -1,21 +1,43 @@
-<div class="row song-queue-head p-1">
+<div class="row song-queue-head p-1" id="<%= song.id%>">
     <div class="col-1 p-0">
         <a href="<%= song_path(song)%>">
             <%= image_tag song.thumbnail , class: "thumbnail" %>
         </a>
     </div>
-    <div class="col-9 p-1">
+    <div class="col-8 p-1">
         <h6><%= song.name %></h6>
         <p> <%= song.users.first.name %></p>
     </div> 
-    <div class="col-2">
+    <div class="col-3">
         <div class='row p-1 pt-4 justify-content-center d-flexlike_button align-content-center'>
-            <div class="col-6 like_button">
+            <div class="col-4 playing-indicator">
+                <% if current_song == song %>
+                    <h6> playing </h6>
+                <% end %>
+            </div>
+            <div class="col-2 like_button">
                 <%= render "likes/like_button" , likeable:song %>
             </div>
-            <div class="col-6">
+            <div class="col-2">
                 <%= link_to image_tag("icons/x-circle.svg"), song_queue_path(song.id) , method: :delete%>
             </div>
         </div>  
     </div>
 </div>
+
+<script>
+    $('.song-queue-head#<%= song.id%>').on("click",function(){
+        $.ajax({
+            url: "/change_song/"+ <%= index %> + ".js",
+            method: "GET" ,
+            success: function(){
+              progress = 0
+              play();
+              document.cookie = "songProgress="+progress;
+            }
+        });
+    });
+
+
+    $('#prev-button')
+</script>
